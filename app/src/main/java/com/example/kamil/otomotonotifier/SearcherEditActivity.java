@@ -3,6 +3,7 @@ package com.example.kamil.otomotonotifier;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 public class SearcherEditActivity extends AppCompatActivity {
@@ -12,11 +13,11 @@ public class SearcherEditActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_searcher_edit);
+        initComponents();
         if (isSearcherIdSaved()) {
             downloadSearcher();
             updateUIWithSearcher();
         }
-        initComponents();
     }
 
     public void confirmChanges(View view) {
@@ -37,6 +38,6 @@ public class SearcherEditActivity extends AppCompatActivity {
     }
 
     private void updateUIWithSearcher() {
-
+        spinner.setSelection(((ArrayAdapter)spinner.getAdapter()).getPosition(searcher.getCategory()));
     }
 }

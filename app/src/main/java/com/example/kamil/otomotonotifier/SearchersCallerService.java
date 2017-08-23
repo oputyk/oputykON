@@ -53,7 +53,6 @@ public class SearchersCallerService extends Service {
                 .setContentTitle("Nowe ogloszenia")
                 .setContentText(str);
         Intent notifIntent = new Intent(this, AdListActivity.class);
-        notifIntent.putExtra("textView", str);
         mBuilder.setContentIntent(PendingIntent.getActivity(this, 0, notifIntent, 0));
         ((NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE)).notify(0, mBuilder.build());
     }

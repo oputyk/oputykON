@@ -135,7 +135,7 @@ public class AdListJsonParser implements JsonParser<List<Ad>> {
             this.kmNotMth = false;
             return Integer.parseInt(formatAndReturnMileageString(mileageString));
         } catch (Throwable th) {
-            return Integer.parseInt(formatAndReturnMileageString(mileageString));
+            return -1;
         }
     }
 
@@ -160,11 +160,19 @@ public class AdListJsonParser implements JsonParser<List<Ad>> {
     }
 
     private int parseAndReturnPower() throws JSONException {
-        return Integer.parseInt(formatAndReturnPowerString(parseAndReturnParamByName("Moc")));
+        String powerString = formatAndReturnPowerString(parseAndReturnParamByName("Moc"));
+        if(powerString.isEmpty()) {
+            return -1;
+        }
+        return Integer.parseInt(powerString);
     }
 
     private int parseAndReturnEngine() throws JSONException {
-        return Integer.parseInt(formatAndReturnEngineString(parseAndReturnParamByName("Pojemność skokowa")));
+        String engineString = formatAndReturnEngineString(parseAndReturnParamByName("Pojemność skokowa"));
+        if(engineString.isEmpty()) {
+            return -1;
+        }
+        return Integer.parseInt(engineString);
     }
 
     private boolean parseAndReturnDamaged() throws JSONException {

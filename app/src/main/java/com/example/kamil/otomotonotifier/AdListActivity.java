@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
 import android.widget.ListView;
 import java.util.Calendar;
 import java.util.List;
@@ -21,11 +22,13 @@ public class AdListActivity extends AppCompatActivity implements OnItemClickList
     private PendingIntent alarmIntent;
     private AlarmManager alarmMgr = null;
     private ListView searchedAdListView;
+    Button clearAllAdsButton;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        if (!isBroadCastReveiverSet()) {
+        initClearAllAdsButton();
+        if (!isBroadCastReveiverSet()) {//to change!!!
             initBroadCastReceiver();
         }
         initsearchedAdListView();
@@ -42,10 +45,15 @@ public class AdListActivity extends AppCompatActivity implements OnItemClickList
 
     public void clearAllAds(View view) {
         AppAdsDatabase.getDatabase(getApplicationContext()).getAdDao().deleteAllAds();
+        update();
     }
 
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         startActivity(new Intent("android.intent.action.VIEW", Uri.parse(((Ad) parent.getItemAtPosition(position)).getLink())));
+    }
+
+    private void initClearAllAdsButton() {
+        clearAllAdsButton = (Button)findViewById(R.id.clearAllAdsButton);
     }
 
     private void initsearchedAdListView() {
@@ -56,6 +64,12 @@ public class AdListActivity extends AppCompatActivity implements OnItemClickList
     private void update() {
         downloadAds();
         updateListView();
+        updateClearAllAdsButton();
+    }
+
+
+    private void updateClearAllAdsButton() {
+        clearAllAdsButton.setText(makeClearAllAdsButttonText());
     }
 
     private void updateListView() {
@@ -65,18 +79,25 @@ public class AdListActivity extends AppCompatActivity implements OnItemClickList
     public void initBroadCastReceiver() {
         alarmMgr = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(this, SearchersCaller.class);
-        intent.setAction("com.example.kamil.otomotonotifier.broadcast");
         alarmIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(System.currentTimeMillis());
-        alarmMgr.setRepeating(0, calendar.getTimeInMillis(), 60000, alarmIntent);
+        alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 60000, alarmIntent);
     }
 
     private boolean isBroadCastReveiverSet() {
-        return PendingIntent.getBroadcast(this, 0, new Intent("com.example.kamil.otomotonotifier.broadcast"), PendingIntent.FLAG_UPDATE_CURRENT) != null;
+        return PendingIntent.getBroadcast(this, 0, new Intent(this, SearchersCaller.class), PendingIntent.FLAG_NO_CREATE) != null;
     }
 
     private void downloadAds() {
         ads = AppAdsDatabase.getDatabase(getApplicationContext()).getAdDao().getAllAds();
+    }
+
+    private String makeClearAllAdsButttonText() {
+        StringBuilder stringBuilder = new StringBuilder("");
+        String baseText = getResources().getString(R.string.clear_all_ads);
+        stringBuilder.append(baseText);
+        stringBuilder.append(" (");
+        stringBuilder.append(ads.size());
+        stringBuilder.append(")");
+        return stringBuilder.toString();
     }
 }
