@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Otomoto Notifier</string>
+    <string name="save">Zapisz</string>
+    <string name="data_usage">Zużycie internetu -</string>
+    <string name="add_searcher">Dodaj obserwatora</string>
+    <string name="clear_all_ads">Wyczyść listę ogłoszeń</string>
+    <string name="go_to_searchers">Obserwatorzy</string>
+    <string name="category_prompt">Kategoria</string>
+    <string name="make_prompt">Marka</string>
+</resources>

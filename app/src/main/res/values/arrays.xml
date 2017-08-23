@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="category_string_array">
+        <item>Osobowe</item>
+        <item>Motocykle i quady</item>
+        <item>Dostawcze</item>
+        <item>Maszyny rolnicze</item>
+        <item>Ciężarowe</item>
+        <item>Maszyny budowlane</item>
+        <item>Przyczepy</item>
+    </array>
+</resources>

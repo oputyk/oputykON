@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="match_parent" android:layout_height="match_parent" android:baselineAligned="false" android:weightSum="100.0">
+    <ScrollView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_weight="90.0">
+        <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="0dp" android:baselineAligned="false" android:weightSum="100.0">
+
+            <Spinner
+                android:id="@+id/categorySpinner"
+                style="@style/Widget.AppCompat.Spinner.Underlined"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:layout_marginBottom="16dp"
+                android:entries="@array/category_string_array"
+                android:prompt="@string/category_prompt"
+                android:spinnerMode="dialog" />
+            <Spinner android:id="@+id/makeSpinner" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_margin="8dp" android:layout_marginBottom="16dp" android:prompt="@string/make_prompt" android:spinnerMode="dialog" style="@style/Widget.AppCompat.Spinner.Underlined" />
+            <Spinner android:id="@+id/modelSpinner" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_margin="8dp" android:layout_marginBottom="16dp" android:prompt="@string/make_prompt" android:spinnerMode="dialog" style="@style/Widget.AppCompat.Spinner.Underlined" />
+            <Spinner android:id="@+id/versionSpinner" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_margin="8dp" android:layout_marginBottom="16dp" android:prompt="@string/make_prompt" android:spinnerMode="dialog" style="@style/Widget.AppCompat.Spinner.Underlined" />
+        </LinearLayout>
+    </ScrollView>
+    <Button android:id="@+id/button2" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/save" android:layout_weight="10.0" android:onClick="confirmChanges" />
+</LinearLayout>
