@@ -20,7 +20,7 @@ interface AdDao {
     @Query("select * from ad where adId = :adId")
     Ad getAd(String adId);
 
-    @Query("select * from ad")
+    @Query("select * from ad order by date desc")
     List<Ad> getAllAds();
 
     @Update(onConflict = 1)

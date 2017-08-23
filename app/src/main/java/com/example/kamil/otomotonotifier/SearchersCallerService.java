@@ -76,8 +76,8 @@ public class SearchersCallerService extends Service {
     }
 
     private void saveSearchedAds() {
-        for (Ad ad : newSearchedAds) {
-            AppAdsDatabase.getDatabase(getApplicationContext()).getAdDao().addAd(ad);
+        for (int i = newSearchedAds.size() - 1; i >= 0; i--) {
+            AppAdsDatabase.getDatabase(getApplicationContext()).getAdDao().addAd(newSearchedAds.get(i));
         }
     }
 

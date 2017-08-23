@@ -50,7 +50,7 @@ public class Ad {
     }
 
     private String formatAndReturnIntToString(int number) {
-        return getFormatter().format(Integer.toString(number));
+        return getFormatter().format(number);
     }
 
     @NonNull

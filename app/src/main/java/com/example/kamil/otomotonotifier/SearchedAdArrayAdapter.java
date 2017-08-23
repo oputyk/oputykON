@@ -23,8 +23,9 @@ class SearchedAdArrayAdapter extends ArrayAdapter<Ad> {
         }
 
         public void updateByAd(Ad ad) {
-            this.category.setText(ad.getCategory());
-            this.adInfo.setText(ad.toString());
+            category.setText(ad.getCategory());
+            adInfo.setText(ad.toString());
+            price.setText(ad.moneyToString());
         }
     }
 
@@ -34,27 +35,27 @@ class SearchedAdArrayAdapter extends ArrayAdapter<Ad> {
 
     @NonNull
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parentView) {
-        this.view = convertView;
-        this.parent = parentView;
-        if (this.view == null) {
-            this.view = inflateAndReturnView();
-            this.view.setTag(makeAndReturnViewHolder());
+        view = convertView;
+        parent = parentView;
+        if (view == null) {
+            view = inflateAndReturnView();
+            view.setTag(makeAndReturnViewHolder());
         }
-        ((ViewHolder) this.view.getTag()).updateByAd((Ad) getItem(position));
-        return this.view;
+        ((ViewHolder) view.getTag()).updateByAd((Ad) getItem(position));
+        return view;
     }
 
     private View inflateAndReturnView() {
-        this.view = LayoutInflater.from(getContext()).inflate(R.layout.ad_basic_info, this.parent, false);
-        return this.view;
+        view = LayoutInflater.from(getContext()).inflate(R.layout.ad_basic_info, parent, false);
+        return view;
     }
 
     @NonNull
     private ViewHolder makeAndReturnViewHolder() {
         ViewHolder viewHolder = new ViewHolder();
-        viewHolder.price = (TextView) this.view.findViewById(R.id.priceTextView);
-        viewHolder.adInfo = (TextView) this.view.findViewById(R.id.adInfoTextView);
-        viewHolder.category = (TextView) this.view.findViewById(R.id.categoryTextView);
+        viewHolder.price = (TextView) view.findViewById(R.id.priceTextView);
+        viewHolder.adInfo = (TextView) view.findViewById(R.id.adInfoTextView);
+        viewHolder.category = (TextView) view.findViewById(R.id.categoryTextView);
         return viewHolder;
     }
 }
