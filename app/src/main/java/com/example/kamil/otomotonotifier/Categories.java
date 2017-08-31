@@ -1,5 +1,6 @@
 package com.example.kamil.otomotonotifier;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.ArrayList;
@@ -11,6 +12,10 @@ import java.util.List;
 
 public class Categories {
 
+    @JsonIgnoreProperties
+    List<Category> categoryList = null;
+    @JsonProperty(value = "0")
+    private Category all;
     @JsonProperty(value = "29")
     private Category cars;
     @JsonProperty(value = "65")
@@ -26,8 +31,13 @@ public class Categories {
     @JsonProperty(value = "9")
     private Category trailers;
 
-    public List<Category> getCategories() {
-        List<Category> categoryList = new ArrayList<>();
+    public List<Category> getCategoryList() {
+        makeCategoryList();
+        return categoryList;
+    }
+
+    private void makeCategoryList() {
+        categoryList = new ArrayList<>();
         categoryList.add(cars);
         categoryList.add(motorbikes);
         categoryList.add(commercial);
@@ -35,7 +45,6 @@ public class Categories {
         categoryList.add(trucks);
         categoryList.add(construction);
         categoryList.add(trailers);
-        return categoryList;
     }
 
 

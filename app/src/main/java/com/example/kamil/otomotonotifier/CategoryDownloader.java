@@ -17,8 +17,8 @@ import java.util.List;
 public class CategoryDownloader {
     static List<Category> downloadCategories() throws IOException {
         ObjectMapper objectMapper = new ObjectMapper();
-        JsonNode node = objectMapper.readValue(new URL("definitions/parameters/?json=1"), ObjectNode.class).findValue("categories");
+        JsonNode node = objectMapper.readValue(new URL("https://www.otomoto.pl/i2/definitions/categories/?json=1"), ObjectNode.class).findValue("categories");
         Categories categories = objectMapper.convertValue(node, Categories.class);
-        return categories.getCategories();
+        return categories.getCategoryList();
     }
 }
