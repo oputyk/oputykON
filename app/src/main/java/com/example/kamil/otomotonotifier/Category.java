@@ -15,7 +15,7 @@ public class Category {
     private String id;
     private String name;
     private String nameEn;
-    private List<Category> subCategories;
+    private List<Category> subCategories = null;
 
 
     public String getId() {

@@ -88,6 +88,6 @@ public class SearcherContentDownloader {
     }
 
     private String formatStringToUrlString(String key) {
-        return DiacriticalMarksToEnglishFormatter.formatString(key.toLowerCase().replaceAll(" ", "-"));
+        return ParameterFormatter.format(key);
     }
 }

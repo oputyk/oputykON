@@ -12,9 +12,17 @@
                 android:layout_marginBottom="16dp"
                 android:prompt="@string/category_prompt"
                 android:spinnerMode="dialog" />
-            <Spinner android:id="@+id/makeSpinner" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_margin="8dp" android:layout_marginBottom="16dp" android:prompt="@string/make_prompt" android:spinnerMode="dialog" style="@style/Widget.AppCompat.Spinner.Underlined" />
-            <Spinner android:id="@+id/modelSpinner" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_margin="8dp" android:layout_marginBottom="16dp" android:prompt="@string/make_prompt" android:spinnerMode="dialog" style="@style/Widget.AppCompat.Spinner.Underlined" />
-            <Spinner android:id="@+id/versionSpinner" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_margin="8dp" android:layout_marginBottom="16dp" android:prompt="@string/make_prompt" android:spinnerMode="dialog" style="@style/Widget.AppCompat.Spinner.Underlined" />
+
+            <Spinner
+                android:id="@+id/subcategorySpinner"
+                style="@style/Widget.AppCompat.Spinner.Underlined"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:layout_marginBottom="16dp"
+                android:prompt="@string/make_prompt"
+                android:spinnerMode="dialog"
+                android:visibility="gone" />
         </LinearLayout>
     </ScrollView>
     <Button android:id="@+id/button2" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/save" android:layout_weight="10.0" android:onClick="confirmChanges" />

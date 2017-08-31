@@ -17,6 +17,7 @@ public class AdListJsonParser implements JsonParser<List<Ad>> {
     private boolean kmNotMth = true;
     String nextPageUrl;
     boolean onlyLastAdsParsing = true;
+    ExchangeRates exchangeRates = ExchangeRatesClass.getInstance();
 
     public List<Ad> getAds() {
         return this.ads;
@@ -140,7 +141,11 @@ public class AdListJsonParser implements JsonParser<List<Ad>> {
     }
 
     private int parseAndReturnPrice() throws JSONException {
-        return (int) Float.parseFloat(formatAndReturnPriceString(this.jsonAdObject.getString("list_label")));
+        String priceString = this.jsonAdObject.getString("list_label");
+        if(priceString.contains("EUR")) {
+            return (int) (exchangeRates.getExchangeRateToPLNFrom("EUR") * Float.parseFloat(formatAndReturnPriceString(priceString)));
+        }
+        return (int) Float.parseFloat(formatAndReturnPriceString(priceString));
     }
 
     private String parseAndReturnModel() throws JSONException {
@@ -221,6 +226,9 @@ public class AdListJsonParser implements JsonParser<List<Ad>> {
     }
 
     private String formatAndReturnPriceString(String priceString) {
+        if(priceString.contains("EUR")) {
+            return priceString.replaceAll(" ", "").replaceAll(",", ".").replaceAll("EUR", "");
+        }
         return priceString.replaceAll(" ", "").replaceAll(",", ".").replaceAll("PLN", "");
     }
 

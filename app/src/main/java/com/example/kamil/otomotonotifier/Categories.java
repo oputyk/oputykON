@@ -9,13 +9,10 @@ import java.util.List;
 /**
  * Created by kamil on 31/08/2017.
  */
-
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Categories {
 
-    @JsonIgnoreProperties
     List<Category> categoryList = null;
-    @JsonProperty(value = "0")
-    private Category all;
     @JsonProperty(value = "29")
     private Category cars;
     @JsonProperty(value = "65")

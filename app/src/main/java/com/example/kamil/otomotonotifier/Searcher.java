@@ -16,6 +16,7 @@ public class Searcher {
     int minYear;
     String model;
     String version;
+    private String subcategory;
 
     public String toString() {
         return this.make != null ? this.make : "";
@@ -99,5 +100,13 @@ public class Searcher {
 
     public void setMaxPrice(int maxPrice) {
         this.maxPrice = maxPrice;
+    }
+
+    public void setSubcategory(String subcategory) {
+        this.subcategory = subcategory;
+    }
+
+    public String getSubcategory() {
+        return subcategory;
     }
 }
