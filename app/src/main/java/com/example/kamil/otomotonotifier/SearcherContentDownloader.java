@@ -48,9 +48,9 @@ public class SearcherContentDownloader {
     @NonNull
     private String makeAndReturnSearcherKey(Searcher searcher) {
         if (isItBetterToOmitMake(searcher)) {
-            return searcher.getCategory();
+            return searcher.getCategoryCode();
         }
-        return searcher.getCategory() + "/" + searcher.getMake();
+        return searcher.getCategoryCode() + "/" + searcher.getMake();
     }
 
     private void downloadSearcherContentByKey(String key) throws Exception {

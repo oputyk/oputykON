@@ -7,6 +7,7 @@ import java.util.List;
 @Entity
 public class Searcher {
     String category;
+    String categoryCode;
     @PrimaryKey(autoGenerate = true)
     int id;
     String make = null;
@@ -16,7 +17,8 @@ public class Searcher {
     int minYear;
     String model;
     String version;
-    private String subcategory;
+    String subcategory;
+    String subcategoryCode;
 
     public String toString() {
         return this.make != null ? this.make : "";
@@ -108,5 +110,21 @@ public class Searcher {
 
     public String getSubcategory() {
         return subcategory;
+    }
+
+    public String getCategoryCode() {
+        return categoryCode;
+    }
+
+    public void setCategoryCode(String categoryCode) {
+        this.categoryCode = categoryCode;
+    }
+
+    public String getSubcategoryCode() {
+        return subcategoryCode;
+    }
+
+    public void setSubcategoryCode(String subcategoryCode) {
+        this.subcategoryCode = subcategoryCode;
     }
 }

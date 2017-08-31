@@ -8,8 +8,8 @@
                 style="@style/Widget.AppCompat.Spinner.Underlined"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:layout_marginBottom="16dp"
+                android:layout_margin="@dimen/edit_margin"
+                android:layout_marginBottom="@dimen/edit_bottom_margin"
                 android:prompt="@string/category_prompt"
                 android:spinnerMode="dialog" />
 
@@ -18,11 +18,33 @@
                 style="@style/Widget.AppCompat.Spinner.Underlined"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:layout_marginBottom="16dp"
+                android:layout_margin="@dimen/edit_margin"
+                android:layout_marginBottom="@dimen/edit_bottom_margin"
                 android:prompt="@string/make_prompt"
                 android:spinnerMode="dialog"
                 android:visibility="gone" />
+
+            <EditText
+                android:id="@+id/makeEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/edit_margin"
+                android:layout_marginBottom="@dimen/edit_bottom_margin"
+                android:ems="10"
+                android:hint="Marka (zostaw puste, jeśli nie ma znaczenia)"
+                android:inputType="textPersonName"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/modelEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/edit_margin"
+                android:layout_marginBottom="@dimen/edit_bottom_margin"
+                android:ems="10"
+                android:hint="Model (zostaw puste, jeśli nie ma znaczenia)"
+                android:inputType="textPersonName"
+                android:textSize="16sp" />
         </LinearLayout>
     </ScrollView>
     <Button android:id="@+id/button2" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/save" android:layout_weight="10.0" android:onClick="confirmChanges" />

@@ -15,6 +15,7 @@ public class Category {
     private String id;
     private String name;
     private String nameEn;
+    private String code;
     private List<Category> subCategories = null;
 
 
@@ -52,5 +53,13 @@ public class Category {
     @JsonProperty(value = "children")
     public void setSubCategories(List<Category> subCategories) {
         this.subCategories = subCategories;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 }

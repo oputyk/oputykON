@@ -132,11 +132,15 @@ public class AdListJsonParser implements JsonParser<List<Ad>> {
         try {
             return Integer.parseInt(formatAndReturnMileageString(parseAndReturnParamByName("Przebieg")));
         } catch (Exception e) {
+            e.printStackTrace();
             mileageString = parseAndReturnParamByName("Motogodziny");
             this.kmNotMth = false;
-            return Integer.parseInt(formatAndReturnMileageString(mileageString));
-        } catch (Throwable th) {
-            return -1;
+            try {
+                return Integer.parseInt(formatAndReturnMileageString(mileageString));
+            } catch (Exception ex) {
+                ex.printStackTrace();
+                return -1;
+            }
         }
     }
 

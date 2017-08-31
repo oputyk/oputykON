@@ -24,16 +24,16 @@ public class SearcherEditActivity extends AppCompatActivity {
         setContentView(R.layout.activity_searcher_edit);
         initComponents();
         downloadCategoryList();
+        fillInCategoryList();
         if (isSearcherIdSaved()) {
             downloadSearcher();
             updateUIWithSearcher();
         }
-        fillInCategoryList();
     }
 
     public void confirmChanges(View view) {
         searcher.setCategory(spinner.getSelectedItem().toString());
-        if(!subspinner.getSelectedItem().toString().equalsIgnoreCase("dowolny")) {
+        if(subspinner.getVisibility() != Spinner.GONE && !subspinner.getSelectedItem().toString().equalsIgnoreCase("dowolny")) {
             searcher.setSubcategory(subspinner.getSelectedItem().toString());
         }
         AppSearchersDatabase.getDatabase(getApplicationContext()).getSearcherDao().addSearcher(searcher);
@@ -83,6 +83,7 @@ public class SearcherEditActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 Category category = categoryList.get(i);
+                searcher.setCategoryCode(category.getCode());
                 if(category.getSubCategories() == null) {
                     subspinner.setVisibility(Spinner.GONE);
                     subspinner.setSelection(0);
@@ -93,6 +94,18 @@ public class SearcherEditActivity extends AppCompatActivity {
                     fillInSubcategoryList();
                     subspinner.setSelection(0);
                 }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+        subspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                Category subcategory = subcategoryList.get(i + 1);
+                searcher.setSubcategoryCode(subcategory.getCode());
             }
 
             @Override

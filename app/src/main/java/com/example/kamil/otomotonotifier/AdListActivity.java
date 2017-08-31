@@ -15,6 +15,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ListView;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.List;
 
 public class AdListActivity extends AppCompatActivity implements OnItemClickListener {
@@ -28,7 +29,7 @@ public class AdListActivity extends AppCompatActivity implements OnItemClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initClearAllAdsButton();
-        if (!isBroadCastReveiverSet()) {//to change!!!
+        if (!isBroadCastReveiverSet()) {
             initBroadCastReceiver();
         }
         initsearchedAdListView();
@@ -89,6 +90,7 @@ public class AdListActivity extends AppCompatActivity implements OnItemClickList
 
     private void downloadAds() {
         ads = AppAdsDatabase.getDatabase(getApplicationContext()).getAdDao().getAllAds();
+        Collections.reverse(ads);
     }
 
     private String makeClearAllAdsButttonText() {
