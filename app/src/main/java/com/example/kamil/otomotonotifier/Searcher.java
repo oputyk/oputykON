@@ -6,31 +6,30 @@ import java.util.List;
 
 @Entity
 public class Searcher {
-    String category;
-    String categoryCode;
+    private String category;
+    private String categoryCode;
     @PrimaryKey(autoGenerate = true)
-    int id;
-    String make = null;
-    int maxPrice = 10000;
-    int maxYear;
-    int minPrice = 100;
-    int minYear;
-    String model;
-    String version;
-    String subcategory;
-    String subcategoryCode;
+    private int id;
+    private String make = null;
+    private Integer maxPrice = null;
+    private Integer maxYear = null;
+    private Integer minPrice = null;
+    private Integer minYear = null;
+    private String model = null;
+    private String version = null;
+    private String subcategory = null;
+    private String subcategoryCode = null;
 
     public String toString() {
         return this.make != null ? this.make : "";
     }
 
     List<Ad> searchInAds(List<Ad> ads) throws Exception {
-        return filterAdList(ads);
+        SearcherToFilterContainerConverter converter = new SearcherToFilterContainerConverter();
+        FilterContainer filterContainer = converter.convertSearcherToFilterContainer(this);
+        return filterContainer.filterAds(ads);
     }
 
-    private List<Ad> filterAdList(List<Ad> newerAds) {
-        return newerAds;
-    }
 
     public int getId() {
         return this.id;
@@ -72,7 +71,7 @@ public class Searcher {
         this.version = version;
     }
 
-    public int getMinYear() {
+    public Integer getMinYear() {
         return this.minYear;
     }
 
@@ -80,7 +79,7 @@ public class Searcher {
         this.minYear = minYear;
     }
 
-    public int getMaxYear() {
+    public Integer getMaxYear() {
         return this.maxYear;
     }
 
@@ -88,7 +87,7 @@ public class Searcher {
         this.maxYear = maxYear;
     }
 
-    public int getMinPrice() {
+    public Integer getMinPrice() {
         return this.minPrice;
     }
 
@@ -96,7 +95,7 @@ public class Searcher {
         this.minPrice = minPrice;
     }
 
-    public int getMaxPrice() {
+    public Integer getMaxPrice() {
         return this.maxPrice;
     }
 
