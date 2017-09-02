@@ -70,12 +70,13 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:orientation="horizontal"
                 android:weightSum="2">
 
                 <EditText
-                    android:id="@+id/min"
+                    android:id="@+id/minPriceEdit"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/edit_margin"
@@ -97,7 +98,38 @@
                     android:inputType="numberSigned" />
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="2">
+
+                <EditText
+                    android:id="@+id/minYearEdit"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/edit_margin"
+                    android:layout_marginBottom="@dimen/edit_bottom_margin"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="Minimalny rok"
+                    android:inputType="numberSigned" />
+
+                <EditText
+                    android:id="@+id/maxYearEdit"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/edit_margin"
+                    android:layout_marginBottom="@dimen/edit_bottom_margin"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="Maksymalny rok"
+                    android:inputType="numberSigned" />
+
+            </LinearLayout>
+
         </LinearLayout>
     </ScrollView>
+
     <Button android:id="@+id/button2" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="@string/save" android:layout_weight="10.0" android:onClick="confirmChanges" />
 </LinearLayout>

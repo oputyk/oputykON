@@ -19,6 +19,7 @@ public class Searcher {
     private String version = null;
     private String subcategory = null;
     private String subcategoryCode = null;
+    private String type = null;
 
     public String toString() {
         return this.make != null ? this.make : "";
@@ -75,7 +76,7 @@ public class Searcher {
         return this.minYear;
     }
 
-    public void setMinYear(int minYear) {
+    public void setMinYear(Integer minYear) {
         this.minYear = minYear;
     }
 
@@ -83,7 +84,7 @@ public class Searcher {
         return this.maxYear;
     }
 
-    public void setMaxYear(int maxYear) {
+    public void setMaxYear(Integer maxYear) {
         this.maxYear = maxYear;
     }
 
@@ -91,7 +92,7 @@ public class Searcher {
         return this.minPrice;
     }
 
-    public void setMinPrice(int minPrice) {
+    public void setMinPrice(Integer minPrice) {
         this.minPrice = minPrice;
     }
 
@@ -99,7 +100,7 @@ public class Searcher {
         return this.maxPrice;
     }
 
-    public void setMaxPrice(int maxPrice) {
+    public void setMaxPrice(Integer maxPrice) {
         this.maxPrice = maxPrice;
     }
 
@@ -125,5 +126,13 @@ public class Searcher {
 
     public void setSubcategoryCode(String subcategoryCode) {
         this.subcategoryCode = subcategoryCode;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }
