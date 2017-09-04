@@ -1,7 +1,6 @@
-package com.example.kamil.otomotonotifier;
+package com.example.kamil.otomotonotifier.Filters;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.example.kamil.otomotonotifier.Ad;
 
 /**
  * Created by kamil on 01/09/2017.

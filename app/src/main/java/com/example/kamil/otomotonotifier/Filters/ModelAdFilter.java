@@ -1,4 +1,7 @@
-package com.example.kamil.otomotonotifier;
+package com.example.kamil.otomotonotifier.Filters;
+
+import com.example.kamil.otomotonotifier.Ad;
+import com.example.kamil.otomotonotifier.AdFilterTools;
 
 /**
  * Created by kamil on 01/09/2017.

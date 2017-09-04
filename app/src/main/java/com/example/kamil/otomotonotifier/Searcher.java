@@ -20,6 +20,7 @@ public class Searcher {
     private String subcategory = null;
     private String subcategoryCode = null;
     private String type = null;
+    private String fuelType = null;
 
     public String toString() {
         return this.make != null ? this.make : "";
@@ -134,5 +135,13 @@ public class Searcher {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getFuelType() {
+        return fuelType;
+    }
+
+    public void setFuelType(String fuelType) {
+        this.fuelType = fuelType;
     }
 }

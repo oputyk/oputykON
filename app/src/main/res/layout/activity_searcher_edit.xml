@@ -128,6 +128,18 @@
 
             </LinearLayout>
 
+            <EditText
+                android:id="@+id/fuelTypeEdit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/edit_margin"
+                android:layout_marginBottom="@dimen/edit_bottom_margin"
+                android:layout_weight="90.0"
+                android:ems="10"
+                android:hint="Rodzaj paliwa (zostaw puste, jeśli nie ma znaczenia)"
+                android:inputType="textPersonName"
+                android:textSize="16sp" />
+
         </LinearLayout>
     </ScrollView>
 

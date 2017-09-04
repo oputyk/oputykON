@@ -27,6 +27,7 @@ public class SearcherEditActivity extends AppCompatActivity {
     EditText maxPriceEdit;
     EditText minYearEdit;
     EditText maxYearEdit;
+    EditText fuelTypeEdit;
 
     static List<Category> categoryList = new ArrayList<>();
     List<Category> subcategoryList = new ArrayList<>();
@@ -83,6 +84,16 @@ public class SearcherEditActivity extends AppCompatActivity {
         updateSearcherMaxPrice();
         updateSearcherMinYear();
         updateSearcherMaxYear();
+        updateSearcherFuelType();
+    }
+
+
+    private void updateSearcherFuelType() {
+        if(!fuelTypeEdit.getText().toString().isEmpty()) {
+            searcher.setFuelType(fuelTypeEdit.getText().toString());
+        } else {
+            searcher.setFuelType(null);
+        }
     }
 
     private void updateSearcherMaxYear() {
@@ -247,6 +258,7 @@ public class SearcherEditActivity extends AppCompatActivity {
         maxPriceEdit = findViewById(R.id.maxPriceEdit);
         minYearEdit = findViewById(R.id.minYearEdit);
         maxYearEdit = findViewById(R.id.maxYearEdit);
+        fuelTypeEdit = findViewById(R.id.fuelTypeEdit);
     }
 
 
@@ -301,6 +313,7 @@ public class SearcherEditActivity extends AppCompatActivity {
         fillInMaxPriceEdit();
         fillInMinYearEdit();
         fillInMaxYearEdit();
+        fillInFuelType();
     }
 
     private void fillInCategorySpinner() {
@@ -353,13 +366,19 @@ public class SearcherEditActivity extends AppCompatActivity {
 
     private void fillInMinYearEdit() {
         if (searcher.getMinYear() != null) {
-            minYearEdit.setText(searcher.getMinYear());
+            minYearEdit.setText(searcher.getMinYear().toString());
         }
     }
 
     private void fillInMaxYearEdit() {
         if (searcher.getMaxYear() != null) {
-            maxYearEdit.setText(searcher.getMaxYear());
+            maxYearEdit.setText(searcher.getMaxYear().toString());
+        }
+    }
+
+    private void fillInFuelType() {
+        if(searcher.getFuelType() != null) {
+            fuelTypeEdit.setText(searcher.getFuelType());
         }
     }
 

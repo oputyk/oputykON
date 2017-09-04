@@ -1,6 +1,8 @@
-package com.example.kamil.otomotonotifier;
+package com.example.kamil.otomotonotifier.Filters;
 
 import android.util.Range;
+
+import com.example.kamil.otomotonotifier.Ad;
 
 import java.util.ArrayList;
 import java.util.List;

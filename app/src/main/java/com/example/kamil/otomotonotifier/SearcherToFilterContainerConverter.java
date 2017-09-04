@@ -1,7 +1,15 @@
 package com.example.kamil.otomotonotifier;
 
-import android.graphics.PorterDuff;
 import android.support.annotation.NonNull;
+
+import com.example.kamil.otomotonotifier.Filters.AdFilter;
+import com.example.kamil.otomotonotifier.Filters.FuelTypeAdFilter;
+import com.example.kamil.otomotonotifier.Filters.MakeAdFilter;
+import com.example.kamil.otomotonotifier.Filters.ModelAdFilter;
+import com.example.kamil.otomotonotifier.Filters.PriceAdFilter;
+import com.example.kamil.otomotonotifier.Filters.SubcategoryAdFilter;
+import com.example.kamil.otomotonotifier.Filters.VersionAdFilter;
+import com.example.kamil.otomotonotifier.Filters.YearAdFilter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +38,7 @@ public class SearcherToFilterContainerConverter {
         addVersionFilter();
         addPriceFilter();
         addYearFilter();
+        addFuelTypeFilter();
     }
 
 
@@ -86,6 +95,14 @@ public class SearcherToFilterContainerConverter {
             setMaxYearAdFilter(yearAdFiler);
             setMinYearAdFilter(yearAdFiler);
             adFilters.add(yearAdFiler);
+        }
+    }
+
+    private void addFuelTypeFilter() {
+        if(searcher.getFuelType() != null) {
+            FuelTypeAdFilter fuelTypeAdFilter = new FuelTypeAdFilter();
+            fuelTypeAdFilter.setFuelType(searcher.getFuelType());
+            adFilters.add(fuelTypeAdFilter);
         }
     }
 
