@@ -81,7 +81,7 @@ public class AdListActivity extends AppCompatActivity implements OnItemClickList
         alarmMgr = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(this, SearchersCaller.class);
         alarmIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
-        alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 60000, alarmIntent);
+        alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 10 * 60000, alarmIntent);
     }
 
     private boolean isBroadCastReveiverSet() {
