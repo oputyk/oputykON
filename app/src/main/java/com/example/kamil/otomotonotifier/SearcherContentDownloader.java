@@ -8,7 +8,7 @@ import java.util.List;
 
 public class SearcherContentDownloader {
     private Context context;
-    private int downloadCountLimit = 10;
+    private int downloadCountLimit = 100;
     private HashMap<String, List<Ad>> newAdsLists = new HashMap();
 
     public int getDownloadCountLimit() {

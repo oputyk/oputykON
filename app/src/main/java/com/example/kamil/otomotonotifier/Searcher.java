@@ -6,8 +6,8 @@ import java.util.List;
 
 @Entity
 public class Searcher {
-    private String category;
-    private String categoryCode;
+    private String category = null;
+    private String categoryCode = null;
     @PrimaryKey(autoGenerate = true)
     private int id;
     private String make = null;

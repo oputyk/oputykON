@@ -45,27 +45,30 @@ public class SearcherEditActivity extends AppCompatActivity {
 
     public void confirmChanges(View view) {
         updateSearcherByUI();
-        if(!searcher.getCategory().equalsIgnoreCase("osobowe") || searcher.getMake() != null) {
-            if(isOsoboweOk()) {
+        if (!searcher.getCategory().equalsIgnoreCase("osobowe") || searcher.getMake() != null) {
+            if (isOsoboweOk()) {
                 AppSearchersDatabase.getDatabase(getApplicationContext()).getSearcherDao().addSearcher(searcher);
+                finish();
             } else {
-                Toast.makeText(this, "Dodaj markę samochodu osobowego!", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "Nie ma takiej marki samochodu osobowego!", Toast.LENGTH_LONG).show();
             }
+        } else {
+            Toast.makeText(this, "Dodaj markę samochodu osobowego!", Toast.LENGTH_LONG).show();
         }
     }
 
     private boolean isOsoboweOk() {
-        if(searcher.getCategory().equalsIgnoreCase("osobowe")) {
+        if (searcher.getCategory().equalsIgnoreCase("osobowe")) {
             String[] osoboweMakes = getResources().getStringArray(R.array.osobowe_makes_string_array);
             boolean contained = false;
-            for(String str : osoboweMakes) { // containing
-                if(searcher.getMake().equalsIgnoreCase(str)) {
+            for (String str : osoboweMakes) { // containing
+                if (searcher.getMake().equalsIgnoreCase(str)) {
                     contained = true;
                 }
             }
             return contained;
         } else {
-            return false;
+            return true;
         }
     }
 
@@ -83,7 +86,7 @@ public class SearcherEditActivity extends AppCompatActivity {
     }
 
     private void updateSearcherMaxYear() {
-        if(!maxYearEdit.getText().toString().isEmpty()) {
+        if (!maxYearEdit.getText().toString().isEmpty()) {
             searcher.setMaxYear(Integer.parseInt(maxYearEdit.getText().toString()));
         } else {
             searcher.setMaxYear(null);
@@ -91,7 +94,7 @@ public class SearcherEditActivity extends AppCompatActivity {
     }
 
     private void updateSearcherMinYear() {
-        if(!minYearEdit.getText().toString().isEmpty()) {
+        if (!minYearEdit.getText().toString().isEmpty()) {
             searcher.setMinYear(Integer.parseInt(minYearEdit.getText().toString()));
         } else {
             searcher.setMinYear(null);
@@ -99,7 +102,7 @@ public class SearcherEditActivity extends AppCompatActivity {
     }
 
     private void updateSearcherMaxPrice() {
-        if(!maxPriceEdit.getText().toString().isEmpty()) {
+        if (!maxPriceEdit.getText().toString().isEmpty()) {
             searcher.setMaxPrice(Integer.parseInt(maxPriceEdit.getText().toString()));
         } else {
             searcher.setMaxPrice(null);
@@ -107,7 +110,7 @@ public class SearcherEditActivity extends AppCompatActivity {
     }
 
     private void updateSearcherMinPrice() {
-        if(!minPriceEdit.getText().toString().isEmpty()) {
+        if (!minPriceEdit.getText().toString().isEmpty()) {
             searcher.setMinPrice(Integer.parseInt(minPriceEdit.getText().toString()));
         } else {
             searcher.setMinPrice(null);
@@ -115,7 +118,7 @@ public class SearcherEditActivity extends AppCompatActivity {
     }
 
     private void updateSearcherType() {
-        if(!typeEdit.getText().toString().isEmpty()) {
+        if (!typeEdit.getText().toString().isEmpty()) {
             searcher.setType(typeEdit.getText().toString());
         } else {
             searcher.setType(null);
@@ -123,7 +126,7 @@ public class SearcherEditActivity extends AppCompatActivity {
     }
 
     private void updateSearcherVersion() {
-        if(!versionEdit.getText().toString().isEmpty()) {
+        if (!versionEdit.getText().toString().isEmpty()) {
             searcher.setVersion(versionEdit.getText().toString());
         } else {
             searcher.setVersion(null);
@@ -131,7 +134,7 @@ public class SearcherEditActivity extends AppCompatActivity {
     }
 
     private void updateSearcherModel() {
-        if(!modelEdit.getText().toString().isEmpty()) {
+        if (!modelEdit.getText().toString().isEmpty()) {
             searcher.setModel(modelEdit.getText().toString());
         } else {
             searcher.setModel(null);
@@ -139,7 +142,7 @@ public class SearcherEditActivity extends AppCompatActivity {
     }
 
     private void updateSearcherMake() {
-        if(!makeEdit.getText().toString().isEmpty()) {
+        if (!makeEdit.getText().toString().isEmpty()) {
             searcher.setMake(makeEdit.getText().toString());
         } else {
             searcher.setMake(null);
@@ -147,7 +150,7 @@ public class SearcherEditActivity extends AppCompatActivity {
     }
 
     private void updateSearcherSubcategory() {
-        if(subcategorySpinner.getVisibility() != Spinner.GONE && !subcategorySpinner.getSelectedItem().toString().equalsIgnoreCase("dowolny")) {
+        if (subcategorySpinner.getVisibility() != Spinner.GONE && !subcategorySpinner.getSelectedItem().toString().equalsIgnoreCase("dowolny")) {
             searcher.setSubcategory(subcategorySpinner.getSelectedItem().toString());
         } else {
             searcher.setSubcategory(null);
@@ -160,7 +163,7 @@ public class SearcherEditActivity extends AppCompatActivity {
 
 
     private void downloadCategoryList() {
-        if(categoryList.isEmpty()) {
+        if (categoryList.isEmpty()) {
             new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -172,6 +175,7 @@ public class SearcherEditActivity extends AppCompatActivity {
                             public void run() {
                                 removeAllSubcategories();
                                 fillInCategoryList();
+                                fillInCategorySpinner();
                             }
                         });
                     } catch (IOException e) {
@@ -183,8 +187,8 @@ public class SearcherEditActivity extends AppCompatActivity {
     }
 
     private void removeAllSubcategories() {
-        for(Category category : categoryList) {
-            if(category.getSubCategories() != null) {
+        for (Category category : categoryList) {
+            if (category.getSubCategories() != null) {
                 for (int i = 0; i < category.getSubCategories().size(); i++) {
                     List<Category> subcategories = category.getSubCategories();
                     if (subcategories.get(i).getName().toLowerCase().contains("wszystkie")) {
@@ -202,11 +206,10 @@ public class SearcherEditActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 Category category = categoryList.get(i);
                 searcher.setCategoryCode(category.getCode());
-                if(category.getSubCategories() == null) {
+                if (category.getSubCategories() == null) {
                     subcategorySpinner.setVisibility(Spinner.GONE);
                     subcategorySpinner.setSelection(0);
-                }
-                else {
+                } else {
                     subcategorySpinner.setVisibility(Spinner.VISIBLE);
                     subcategoryList = categoryList.get(i).getSubCategories();
                     fillInSubcategoryList();
@@ -264,7 +267,7 @@ public class SearcherEditActivity extends AppCompatActivity {
     @NonNull
     private List<String> getCategoryStrings() {
         List<String> categoryStrings = new ArrayList<>();
-        for(Category category : categoryList) {
+        for (Category category : categoryList) {
             categoryStrings.add(category.getName());
         }
         return categoryStrings;
@@ -273,7 +276,7 @@ public class SearcherEditActivity extends AppCompatActivity {
     private List<String> getSubcategoryStrings() {
         List<String> subcategoryStrings = new ArrayList<>();
         subcategoryStrings.add("Dowolny");
-        for(Category subcategory : subcategoryList) {
+        for (Category subcategory : subcategoryList) {
             subcategoryStrings.add(subcategory.getName());
         }
         return subcategoryStrings;
@@ -301,64 +304,66 @@ public class SearcherEditActivity extends AppCompatActivity {
     }
 
     private void fillInCategorySpinner() {
-        categorySpinner.setSelection(getItemPositionInSpinnerByString(categorySpinner, searcher.getCategory()));
+        if (searcher.getCategory() != null) {
+            categorySpinner.setSelection(getItemPositionInSpinnerByString(categorySpinner, searcher.getCategory()));
+        }
     }
 
     private void fillInSubcategorySpinner() {
-        if(searcher.getSubcategory() != null) {
+        if (searcher.getSubcategory() != null) {
             subcategorySpinner.setSelection(getItemPositionInSpinnerByString(subcategorySpinner, searcher.getSubcategory()));
         }
     }
 
     private void fillInMakeEdit() {
-        if(searcher.getMake() != null) {
+        if (searcher.getMake() != null) {
             makeEdit.setText(searcher.getMake());
         }
     }
 
     private void fillInModelEdit() {
-        if(searcher.getModel() != null) {
+        if (searcher.getModel() != null) {
             modelEdit.setText(searcher.getModel());
         }
     }
 
     private void fillInVersionEdit() {
-        if(searcher.getVersion() != null) {
+        if (searcher.getVersion() != null) {
             versionEdit.setText(searcher.getVersion());
         }
     }
 
     private void fillInTypeEdit() {
-        if(searcher.getType() != null) {
+        if (searcher.getType() != null) {
             typeEdit.setText(searcher.getType());
         }
     }
 
     private void fillInMinPriceEdit() {
-        if(searcher.getMinPrice() != null) {
-            minPriceEdit.setText(searcher.getMinPrice());
+        if (searcher.getMinPrice() != null) {
+            minPriceEdit.setText(searcher.getMinPrice().toString());
         }
     }
 
     private void fillInMaxPriceEdit() {
-        if(searcher.getMaxPrice() != null) {
-            maxPriceEdit.setText(searcher.getMaxPrice());
+        if (searcher.getMaxPrice() != null) {
+            maxPriceEdit.setText(searcher.getMaxPrice().toString());
         }
     }
 
     private void fillInMinYearEdit() {
-        if(searcher.getMinYear() != null) {
+        if (searcher.getMinYear() != null) {
             minYearEdit.setText(searcher.getMinYear());
         }
     }
 
     private void fillInMaxYearEdit() {
-        if(searcher.getMaxYear() != null) {
+        if (searcher.getMaxYear() != null) {
             maxYearEdit.setText(searcher.getMaxYear());
         }
     }
 
     private int getItemPositionInSpinnerByString(Spinner spinner, String string) {
-        return ((ArrayAdapter)spinner.getAdapter()).getPosition(string);
+        return ((ArrayAdapter) spinner.getAdapter()).getPosition(string);
     }
 }

@@ -50,6 +50,7 @@ public class SearchersCallerService extends Service {
         Builder mBuilder = new Builder(this).setLights(1000, 1000, 1000)
                 .setVibrate(new long[]{0, 1000})
                 .setSmallIcon(R.mipmap.ic_launcher)
+                .setAutoCancel(true)
                 .setContentTitle("Nowe ogloszenia")
                 .setContentText(str);
         Intent notifIntent = new Intent(this, AdListActivity.class);
