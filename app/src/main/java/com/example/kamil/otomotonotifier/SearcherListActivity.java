@@ -19,6 +19,7 @@ public class SearcherListActivity extends AppCompatActivity implements OnItemCli
     TextView dataUsageTextView;
     ListView searcherListView;
     List<Searcher> searchers;
+    private int mbUsage = 1000;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -100,6 +101,6 @@ public class SearcherListActivity extends AppCompatActivity implements OnItemCli
     }
 
     private int computeDataUsage() {
-        return searchers.size() * 500;
+        return searchers.size() * mbUsage;
     }
 }

@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.support.v4.app.NotificationCompat.Builder;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 public class SearchersCallerService extends Service {
@@ -67,13 +69,23 @@ public class SearchersCallerService extends Service {
     }
 
     private void gatherSearchedAds() throws Exception {
-        SearcherContentDownloader searcherContentDownloader = new SearcherContentDownloader();
-        searcherContentDownloader.downloadSearcherContent(searchers, getApplicationContext());
-        for (Searcher searcher : searchers) {
-            for (Ad ad : searcher.searchInAds(searcherContentDownloader.getAdListForSearcher(searcher))) {
-                newSearchedAds.add(ad);
+        //if(!DateBlocker.isBlocked(getBeginningOf2018YearDate())) {
+            SearcherContentDownloader searcherContentDownloader = new SearcherContentDownloader();
+            searcherContentDownloader.downloadSearcherContent(searchers, getApplicationContext());
+            for (Searcher searcher : searchers) {
+                List<Ad> ads = searcher.searchInAds(searcherContentDownloader.getAdListForSearcher(searcher));
+                for (Ad ad : ads) {
+                    newSearchedAds.add(ad);
+                }
             }
-        }
+        //}
+    }
+
+    private Date getBeginningOf2018YearDate() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.DAY_OF_YEAR, 1);
+        calendar.set(Calendar.YEAR, 2018);
+        return calendar.getTime();
     }
 
     private void saveSearchedAds() {
