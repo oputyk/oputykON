@@ -1,20 +1,18 @@
 package com.example.kamil.otomotonotifier;
 
 import android.app.AlarmManager;
-import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ListView;
-import java.util.Calendar;
+
 import java.util.Collections;
 import java.util.List;
 
@@ -23,6 +21,7 @@ public class AdListActivity extends AppCompatActivity implements OnItemClickList
     private PendingIntent alarmIntent;
     private AlarmManager alarmMgr = null;
     private ListView searchedAdListView;
+    private int refreshTimeInMinutes = 1;
     Button clearAllAdsButton;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +80,7 @@ public class AdListActivity extends AppCompatActivity implements OnItemClickList
         alarmMgr = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(this, SearchersCaller.class);
         alarmIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
-        alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 5 * 60000, alarmIntent);
+        alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), refreshTimeInMinutes * 60000, alarmIntent);
     }
 
     private boolean isBroadCastReveiverSet() {
