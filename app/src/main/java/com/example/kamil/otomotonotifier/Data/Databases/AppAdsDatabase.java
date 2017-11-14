@@ -19,7 +19,7 @@ public abstract class AppAdsDatabase extends RoomDatabase {
 
     public static AppAdsDatabase getDatabase(Context context) {
         if (instance == null) {
-            instance = (AppAdsDatabase) Room.databaseBuilder(context, AppAdsDatabase.class, "Ads").allowMainThreadQueries().build();
+            instance = (AppAdsDatabase) Room.databaseBuilder(context, AppAdsDatabase.class, "ads").allowMainThreadQueries().build();
         }
         return instance;
     }
