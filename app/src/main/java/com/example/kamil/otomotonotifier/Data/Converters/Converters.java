@@ -1,4 +1,4 @@
-package com.example.kamil.otomotonotifier;
+package com.example.kamil.otomotonotifier.Data.Converters;
 
 import android.arch.persistence.room.TypeConverter;
 import java.util.Date;

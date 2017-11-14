@@ -5,7 +5,7 @@ package com.example.kamil.otomotonotifier.Formatters;
  */
 
 public class ParameterFormatter {
-    static String format(String parameter) {
+    public static String format(String parameter) {
         parameter = DiacriticalMarksToEnglishFormatter.formatString(parameter);
         parameter = parameter.replaceAll(" ", "-");
         parameter = parameter.toLowerCase();

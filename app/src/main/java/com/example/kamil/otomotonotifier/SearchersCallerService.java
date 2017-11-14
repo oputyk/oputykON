@@ -8,9 +8,12 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.support.v4.app.NotificationCompat.Builder;
 
-import com.example.kamil.otomotonotifier.Activities.AdListActivity;
+import com.example.kamil.otomotonotifier.UI.Activities.AdListActivity;
+import com.example.kamil.otomotonotifier.AdEngine.Downloaders.SearcherContentDownloader;
 import com.example.kamil.otomotonotifier.AdEngine.Models.Ad;
 import com.example.kamil.otomotonotifier.AdEngine.Models.Searcher;
+import com.example.kamil.otomotonotifier.Data.Databases.AppAdsDatabase;
+import com.example.kamil.otomotonotifier.Data.Databases.AppSearchersDatabase;
 
 import java.util.ArrayList;
 import java.util.Calendar;

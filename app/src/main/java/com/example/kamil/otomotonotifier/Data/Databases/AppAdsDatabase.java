@@ -1,4 +1,4 @@
-package com.example.kamil.otomotonotifier;
+package com.example.kamil.otomotonotifier.Data.Databases;
 
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.Room;
@@ -6,7 +6,8 @@ import android.arch.persistence.room.RoomDatabase;
 import android.arch.persistence.room.TypeConverters;
 import android.content.Context;
 
-import com.example.kamil.otomotonotifier.Daos.AdDao;
+import com.example.kamil.otomotonotifier.Data.Converters.Converters;
+import com.example.kamil.otomotonotifier.Data.Daos.AdDao;
 import com.example.kamil.otomotonotifier.AdEngine.Models.Ad;
 
 @Database(entities = {Ad.class}, exportSchema = false, version = 1)

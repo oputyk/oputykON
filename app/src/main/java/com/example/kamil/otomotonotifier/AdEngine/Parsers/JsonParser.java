@@ -1,4 +1,4 @@
-package com.example.kamil.otomotonotifier;
+package com.example.kamil.otomotonotifier.AdEngine.Parsers;
 
 import org.json.JSONException;
 import org.json.JSONObject;

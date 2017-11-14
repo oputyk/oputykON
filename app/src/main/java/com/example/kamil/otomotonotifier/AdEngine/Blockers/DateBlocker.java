@@ -1,4 +1,4 @@
-package com.example.kamil.otomotonotifier;
+package com.example.kamil.otomotonotifier.AdEngine.Blockers;
 
 import java.util.Calendar;
 import java.util.Date;

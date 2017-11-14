@@ -1,5 +1,4 @@
-package com.example.kamil.otomotonotifier;
-import java.io.IOException;
+package com.example.kamil.otomotonotifier.AdEngine.RemoteServices;
 import java.util.Date;
 
 import org.json.*;
@@ -8,12 +7,6 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-
-interface ExchangeRates {
-    public double getExchangeRateToPLNFrom(String currencyName) throws JSONException;
-    public void periodUpdate();
-    void setUpdatePeriod(long milisecondsPeriod);
-}
 
 public class ExchangeRatesClass implements ExchangeRates {
     JSONObject jsonObject;

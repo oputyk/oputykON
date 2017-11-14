@@ -1,4 +1,4 @@
-package com.example.kamil.otomotonotifier;
+package com.example.kamil.otomotonotifier.UI.Adapters;
 
 import android.app.Activity;
 import android.support.annotation.NonNull;
@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.example.kamil.otomotonotifier.AdEngine.Models.Searcher;
+import com.example.kamil.otomotonotifier.R;
 
 import java.util.List;
 

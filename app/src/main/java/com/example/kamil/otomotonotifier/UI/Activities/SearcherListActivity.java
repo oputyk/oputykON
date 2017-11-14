@@ -1,4 +1,4 @@
-package com.example.kamil.otomotonotifier.Activities;
+package com.example.kamil.otomotonotifier.UI.Activities;
 
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
@@ -14,10 +14,10 @@ import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.kamil.otomotonotifier.AppSearchersDatabase;
+import com.example.kamil.otomotonotifier.Data.Databases.AppSearchersDatabase;
 import com.example.kamil.otomotonotifier.R;
 import com.example.kamil.otomotonotifier.AdEngine.Models.Searcher;
-import com.example.kamil.otomotonotifier.SearcherArrayAdapter;
+import com.example.kamil.otomotonotifier.UI.Adapters.SearcherArrayAdapter;
 
 import java.util.List;
 

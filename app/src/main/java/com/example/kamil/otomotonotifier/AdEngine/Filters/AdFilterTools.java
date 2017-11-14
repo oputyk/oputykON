@@ -1,4 +1,4 @@
-package com.example.kamil.otomotonotifier;
+package com.example.kamil.otomotonotifier.AdEngine.Filters;
 
 import com.example.kamil.otomotonotifier.Formatters.DiacriticalMarksToEnglishFormatter;
 

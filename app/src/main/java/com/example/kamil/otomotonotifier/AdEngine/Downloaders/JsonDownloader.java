@@ -1,4 +1,4 @@
-package com.example.kamil.otomotonotifier;
+package com.example.kamil.otomotonotifier.AdEngine.Downloaders;
 
 import java.io.IOException;
 import okhttp3.OkHttpClient;

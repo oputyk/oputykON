@@ -1,12 +1,12 @@
-package com.example.kamil.otomotonotifier;
+package com.example.kamil.otomotonotifier.Data.Databases;
 
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
-import com.example.kamil.otomotonotifier.Daos.LastAdIdDao;
-import com.example.kamil.otomotonotifier.Daos.SearcherDao;
+import com.example.kamil.otomotonotifier.Data.Daos.LastAdIdDao;
+import com.example.kamil.otomotonotifier.Data.Daos.SearcherDao;
 import com.example.kamil.otomotonotifier.AdEngine.Models.LastAdId;
 import com.example.kamil.otomotonotifier.AdEngine.Models.Searcher;
 

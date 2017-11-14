@@ -1,4 +1,4 @@
-package com.example.kamil.otomotonotifier.Daos;
+package com.example.kamil.otomotonotifier.Data.Daos;
 
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;

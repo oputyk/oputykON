@@ -1,6 +1,8 @@
-package com.example.kamil.otomotonotifier;
+package com.example.kamil.otomotonotifier.AdEngine.Parsers;
 
 import com.example.kamil.otomotonotifier.AdEngine.Models.Ad;
+import com.example.kamil.otomotonotifier.AdEngine.RemoteServices.ExchangeRates;
+import com.example.kamil.otomotonotifier.AdEngine.RemoteServices.ExchangeRatesClass;
 
 import java.util.ArrayList;
 import java.util.List;

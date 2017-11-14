@@ -1,4 +1,4 @@
-package com.example.kamil.otomotonotifier;
+package com.example.kamil.otomotonotifier.AdEngine.Converters;
 
 import android.support.annotation.NonNull;
 
@@ -11,6 +11,7 @@ import com.example.kamil.otomotonotifier.AdEngine.Filters.SubcategoryAdFilter;
 import com.example.kamil.otomotonotifier.AdEngine.Filters.VersionAdFilter;
 import com.example.kamil.otomotonotifier.AdEngine.Filters.YearAdFilter;
 import com.example.kamil.otomotonotifier.AdEngine.Models.Searcher;
+import com.example.kamil.otomotonotifier.AdEngine.Filters.FilterContainer;
 
 import java.util.ArrayList;
 import java.util.List;

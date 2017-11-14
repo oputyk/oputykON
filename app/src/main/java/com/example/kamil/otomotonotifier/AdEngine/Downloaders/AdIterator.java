@@ -1,6 +1,7 @@
-package com.example.kamil.otomotonotifier;
+package com.example.kamil.otomotonotifier.AdEngine.Downloaders;
 
 import com.example.kamil.otomotonotifier.AdEngine.Models.Ad;
+import com.example.kamil.otomotonotifier.AdEngine.Parsers.AdListJsonParser;
 
 import java.io.IOException;
 import java.util.ArrayList;

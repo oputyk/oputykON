@@ -1,7 +1,6 @@
 package com.example.kamil.otomotonotifier.AdEngine.Filters;
 
 import com.example.kamil.otomotonotifier.AdEngine.Models.Ad;
-import com.example.kamil.otomotonotifier.AdFilterTools;
 
 /**
  * Created by kamil on 01/09/2017.

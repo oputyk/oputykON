@@ -1,4 +1,4 @@
-package com.example.kamil.otomotonotifier.Activities;
+package com.example.kamil.otomotonotifier.UI.Activities;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,9 +10,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.kamil.otomotonotifier.AppSearchersDatabase;
+import com.example.kamil.otomotonotifier.Data.Databases.AppSearchersDatabase;
 import com.example.kamil.otomotonotifier.AdEngine.Models.Category;
-import com.example.kamil.otomotonotifier.CategoryDownloader;
+import com.example.kamil.otomotonotifier.AdEngine.Downloaders.CategoryDownloader;
 import com.example.kamil.otomotonotifier.R;
 import com.example.kamil.otomotonotifier.AdEngine.Models.Searcher;
 

@@ -1,4 +1,4 @@
-package com.example.kamil.otomotonotifier;
+package com.example.kamil.otomotonotifier.AdEngine.Downloaders;
 
 import com.example.kamil.otomotonotifier.AdEngine.Models.Categories;
 import com.example.kamil.otomotonotifier.AdEngine.Models.Category;

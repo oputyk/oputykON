@@ -3,8 +3,8 @@ package com.example.kamil.otomotonotifier.AdEngine.Models;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
-import com.example.kamil.otomotonotifier.FilterContainer;
-import com.example.kamil.otomotonotifier.SearcherToFilterContainerConverter;
+import com.example.kamil.otomotonotifier.AdEngine.Converters.SearcherToFilterContainerConverter;
+import com.example.kamil.otomotonotifier.AdEngine.Filters.FilterContainer;
 
 import java.util.List;
 
@@ -30,7 +30,7 @@ public class Searcher {
         return this.make != null ? this.make : "";
     }
 
-    List<Ad> searchInAds(List<Ad> ads) throws Exception {
+    public List<Ad> searchInAds(List<Ad> ads) throws Exception {
         SearcherToFilterContainerConverter converter = new SearcherToFilterContainerConverter();
         FilterContainer filterContainer = converter.convertSearcherToFilterContainer(this);
         return filterContainer.filterAds(ads);
