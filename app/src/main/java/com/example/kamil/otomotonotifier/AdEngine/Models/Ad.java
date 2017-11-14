@@ -1,4 +1,4 @@
-package com.example.kamil.otomotonotifier;
+package com.example.kamil.otomotonotifier.AdEngine.Models;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;

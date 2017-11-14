@@ -26,7 +26,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".AdListActivity"
+            android:name=".Activities.AdListActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -46,10 +46,10 @@
             android:exported="true" />
 
         <activity
-            android:name=".SearcherListActivity"
+            android:name=".Activities.SearcherListActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".SearcherEditActivity"
+            android:name=".Activities.SearcherEditActivity"
             android:screenOrientation="portrait" />
 
         <receiver android:name=".BootCompletedReceiver" >

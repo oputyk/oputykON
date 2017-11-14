@@ -2,14 +2,15 @@ package com.example.kamil.otomotonotifier;
 
 import android.support.annotation.NonNull;
 
-import com.example.kamil.otomotonotifier.Filters.AdFilter;
-import com.example.kamil.otomotonotifier.Filters.FuelTypeAdFilter;
-import com.example.kamil.otomotonotifier.Filters.MakeAdFilter;
-import com.example.kamil.otomotonotifier.Filters.ModelAdFilter;
-import com.example.kamil.otomotonotifier.Filters.PriceAdFilter;
-import com.example.kamil.otomotonotifier.Filters.SubcategoryAdFilter;
-import com.example.kamil.otomotonotifier.Filters.VersionAdFilter;
-import com.example.kamil.otomotonotifier.Filters.YearAdFilter;
+import com.example.kamil.otomotonotifier.AdEngine.Filters.AdFilter;
+import com.example.kamil.otomotonotifier.AdEngine.Filters.FuelTypeAdFilter;
+import com.example.kamil.otomotonotifier.AdEngine.Filters.MakeAdFilter;
+import com.example.kamil.otomotonotifier.AdEngine.Filters.ModelAdFilter;
+import com.example.kamil.otomotonotifier.AdEngine.Filters.PriceAdFilter;
+import com.example.kamil.otomotonotifier.AdEngine.Filters.SubcategoryAdFilter;
+import com.example.kamil.otomotonotifier.AdEngine.Filters.VersionAdFilter;
+import com.example.kamil.otomotonotifier.AdEngine.Filters.YearAdFilter;
+import com.example.kamil.otomotonotifier.AdEngine.Models.Searcher;
 
 import java.util.ArrayList;
 import java.util.List;

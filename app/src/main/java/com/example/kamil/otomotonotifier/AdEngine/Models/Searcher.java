@@ -1,7 +1,11 @@
-package com.example.kamil.otomotonotifier;
+package com.example.kamil.otomotonotifier.AdEngine.Models;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
+
+import com.example.kamil.otomotonotifier.FilterContainer;
+import com.example.kamil.otomotonotifier.SearcherToFilterContainerConverter;
+
 import java.util.List;
 
 @Entity

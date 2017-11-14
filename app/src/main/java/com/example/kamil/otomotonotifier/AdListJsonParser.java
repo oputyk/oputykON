@@ -1,5 +1,7 @@
 package com.example.kamil.otomotonotifier;
 
+import com.example.kamil.otomotonotifier.AdEngine.Models.Ad;
+
 import java.util.ArrayList;
 import java.util.List;
 import org.json.JSONArray;

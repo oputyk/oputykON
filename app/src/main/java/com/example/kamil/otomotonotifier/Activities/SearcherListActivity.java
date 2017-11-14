@@ -1,4 +1,4 @@
-package com.example.kamil.otomotonotifier;
+package com.example.kamil.otomotonotifier.Activities;
 
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
@@ -13,6 +13,12 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.example.kamil.otomotonotifier.AppSearchersDatabase;
+import com.example.kamil.otomotonotifier.R;
+import com.example.kamil.otomotonotifier.AdEngine.Models.Searcher;
+import com.example.kamil.otomotonotifier.SearcherArrayAdapter;
+
 import java.util.List;
 
 public class SearcherListActivity extends AppCompatActivity implements OnItemClickListener, OnItemLongClickListener {

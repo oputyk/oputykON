@@ -1,6 +1,7 @@
 package com.example.kamil.otomotonotifier;
 
-import com.example.kamil.otomotonotifier.Filters.AdFilter;
+import com.example.kamil.otomotonotifier.AdEngine.Filters.AdFilter;
+import com.example.kamil.otomotonotifier.AdEngine.Models.Ad;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +13,7 @@ import java.util.List;
 public class FilterContainer {
     private List<AdFilter> adFilters = new ArrayList<>();
 
-    List<Ad> filterAds(List<Ad> ads) {
+    public List<Ad> filterAds(List<Ad> ads) {
         for(AdFilter adFilter : adFilters) {
             ads = adFilter.filterAds(ads);
         }

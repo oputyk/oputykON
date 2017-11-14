@@ -1,5 +1,7 @@
 package com.example.kamil.otomotonotifier;
 
+import com.example.kamil.otomotonotifier.Formatters.DiacriticalMarksToEnglishFormatter;
+
 /**
  * Created by kamil on 01/09/2017.
  */

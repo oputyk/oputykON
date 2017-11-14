@@ -1,13 +1,13 @@
 package com.example.kamil.otomotonotifier;
 
+import com.example.kamil.otomotonotifier.AdEngine.Models.Categories;
+import com.example.kamil.otomotonotifier.AdEngine.Models.Category;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
 
 /**

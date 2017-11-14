@@ -1,4 +1,4 @@
-package com.example.kamil.otomotonotifier;
+package com.example.kamil.otomotonotifier.Activities;
 
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -12,6 +12,12 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ListView;
+
+import com.example.kamil.otomotonotifier.AdEngine.Models.Ad;
+import com.example.kamil.otomotonotifier.AppAdsDatabase;
+import com.example.kamil.otomotonotifier.R;
+import com.example.kamil.otomotonotifier.SearchedAdArrayAdapter;
+import com.example.kamil.otomotonotifier.SearchersCaller;
 
 import java.util.Collections;
 import java.util.List;

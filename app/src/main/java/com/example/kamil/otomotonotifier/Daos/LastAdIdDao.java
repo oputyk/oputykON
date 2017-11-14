@@ -1,9 +1,12 @@
-package com.example.kamil.otomotonotifier;
+package com.example.kamil.otomotonotifier.Daos;
 
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
+
+import com.example.kamil.otomotonotifier.AdEngine.Models.LastAdId;
+
 import java.util.List;
 
 @Dao
