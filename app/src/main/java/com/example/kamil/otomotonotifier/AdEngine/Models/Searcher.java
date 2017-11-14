@@ -30,7 +30,7 @@ public class Searcher {
         return this.make != null ? this.make : "";
     }
 
-    public List<Ad> searchInAds(List<Ad> ads) throws Exception {
+    public List<Ad> searchInAds(List<Ad> ads) throws Exception { //TODO: move the function to new class
         SearcherToFilterContainerConverter converter = new SearcherToFilterContainerConverter();
         FilterContainer filterContainer = converter.convertSearcherToFilterContainer(this);
         return filterContainer.filterAds(ads);
