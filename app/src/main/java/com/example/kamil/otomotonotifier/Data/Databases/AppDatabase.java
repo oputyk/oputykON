@@ -20,9 +20,9 @@ import com.example.kamil.otomotonotifier.Models.SearcherEntity;
 public abstract class AppDatabase extends RoomDatabase {
     private static AppDatabase instance = null;
 
-    public abstract AdDao getAdEntityDao();
+    public abstract AdDao getAdDao();
     public abstract ClientDao getClientDao();
-    public abstract SearcherDao getSearcherEntityDao();
+    public abstract SearcherDao getSearcherDao();
 
     public static AppDatabase getDatabase(Context context) {
         if (instance == null) {

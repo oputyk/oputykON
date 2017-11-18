@@ -8,21 +8,19 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.support.v4.app.NotificationCompat.Builder;
 
-import com.example.kamil.otomotonotifier.AdEngine.Converters.SearcherToFilterContainerConverter;
-import com.example.kamil.otomotonotifier.AdEngine.Filters.FilterContainer;
+import com.example.kamil.otomotonotifier.AdEngine.AdEngine;
+import com.example.kamil.otomotonotifier.Data.Databases.AppDatabase;
+import com.example.kamil.otomotonotifier.Models.AdEntity;
+import com.example.kamil.otomotonotifier.Models.SearcherEntity;
 import com.example.kamil.otomotonotifier.UI.Activities.AdListActivity;
-import com.example.kamil.otomotonotifier.AdEngine.Downloaders.SearcherContentDownloader;
-import com.example.kamil.otomotonotifier.AdEngine.Models.Ad;
 import com.example.kamil.otomotonotifier.AdEngine.Models.Searcher;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 public class SearchersCallerService extends Service {
-    List<Ad> newSearchedAds = new ArrayList();
-    List<Searcher> searchers = new ArrayList();
+    List<AdEntity> newSearchedAdEntities = new ArrayList();
+    List<SearcherEntity> searcherEntities = new ArrayList();
 
     class SearchersCallerServiceThread implements Runnable {
         SearchersCallerServiceThread() {
@@ -30,7 +28,7 @@ public class SearchersCallerService extends Service {
 
         public void run() {
             try {
-                doCallersServiceWork();
+                FindAndSaveNewSearchedAdEntites();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -43,17 +41,17 @@ public class SearchersCallerService extends Service {
         return Service.START_NOT_STICKY;
     }
 
-    private void doCallersServiceWork() throws Exception {
+    private void FindAndSaveNewSearchedAdEntites() throws Exception {
         downloadSearchers();
-        gatherSearchedAds();
-        if (!newSearchedAds.isEmpty()) {
+        AdEngine.findNewAdsBySearchers(getSearchersFromSearcherEntities(), getApplicationContext());
+        if (!newSearchedAdEntities.isEmpty()) {
             notifyAboutSearchedAds(searchedAdsToString());
         }
         saveSearchedAds();
     }
 
     private void downloadSearchers() {
-        searchers = AppSearchersDatabase.getDatabase(getApplicationContext()).getSearcherDao().getAllSearchers();
+        searcherEntities = AppDatabase.getDatabase(getApplicationContext()).getSearcherDao().getAllSearcherEntities();
     }
 
     private void notifyAboutSearchedAds(String str) throws Exception {
@@ -70,41 +68,23 @@ public class SearchersCallerService extends Service {
 
     private String searchedAdsToString() throws Exception {
         StringBuilder stringBuilder = new StringBuilder();
-        for (Ad ad : newSearchedAds) {
+        for (AdEntity ad : newSearchedAdEntities) {
             stringBuilder.append(ad + "\n");
         }
         return stringBuilder.toString();
     }
 
-    private void gatherSearchedAds() throws Exception {
-        //if(!ByDateBlocker.isBlocked(getBeginningOf2018YearDate())) {
-            SearcherContentDownloader searcherContentDownloader = new SearcherContentDownloader();
-            searcherContentDownloader.downloadSearcherContent(searchers, getApplicationContext());
-            for (Searcher searcher : searchers) {
-                List<Ad> ads = searchInAdsBySearcher(searcherContentDownloader.getAdListForSearcher(searcher), searcher);
-                for (Ad ad : ads) {
-                    newSearchedAds.add(ad);
-                }
-            }
-        //}
-    }
-
-    private List<Ad> searchInAdsBySearcher(List<Ad> ads, Searcher searcher) {
-        SearcherToFilterContainerConverter converter = new SearcherToFilterContainerConverter();
-        FilterContainer filterContainer = converter.convertSearcherToFilterContainer(searcher);
-        return filterContainer.filterAds(ads);
-    }
-
-    private Date getBeginningOf2018YearDate() {
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.DAY_OF_YEAR, 1);
-        calendar.set(Calendar.YEAR, 2018);
-        return calendar.getTime();
+    private List<Searcher> getSearchersFromSearcherEntities() {
+        List<Searcher> searchers = new ArrayList<>();
+        for(SearcherEntity searcherEntity : searcherEntities) {
+            searchers.add(searcherEntity.getSearcher());
+        }
+        return searchers;
     }
 
     private void saveSearchedAds() {
-        for (int i = newSearchedAds.size() - 1; i >= 0; i--) {
-            AppAdsDatabase.getDatabase(getApplicationContext()).getAdDao().addAd(newSearchedAds.get(i));
+        for (int i = newSearchedAdEntities.size() - 1; i >= 0; i--) {
+            AppDatabase.getDatabase(getApplicationContext()).getAdDao().addAdEntity(newSearchedAdEntities.get(i));
         }
     }
 

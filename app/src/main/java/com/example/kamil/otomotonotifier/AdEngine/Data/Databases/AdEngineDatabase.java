@@ -5,6 +5,7 @@ import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
+import com.example.kamil.otomotonotifier.AdEngine.Data.Daos.LastAdIdDao;
 import com.example.kamil.otomotonotifier.AdEngine.Models.LastAdId;
 
 /**
@@ -15,7 +16,7 @@ import com.example.kamil.otomotonotifier.AdEngine.Models.LastAdId;
 public abstract class AdEngineDatabase extends RoomDatabase {
     private static AdEngineDatabase instance = null;
 
-    public abstract LastAdId getLastAdIdDao();
+    public abstract LastAdIdDao getLastAdIdDao();
 
     public static AdEngineDatabase getDatabase(Context context) {
         if (instance == null) {

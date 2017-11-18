@@ -22,7 +22,7 @@ public interface AdDao {
     void deleteAllAdEntities();
 
     @Query("select * from AdEntity where id = :id")
-    AdEntity AdEntity(String id);
+    AdEntity getAdEntity(String id);
 
     @Query("select * from AdEntity")
     List<AdEntity> getAllAdEntities();

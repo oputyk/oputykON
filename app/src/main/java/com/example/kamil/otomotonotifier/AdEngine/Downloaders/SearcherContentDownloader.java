@@ -3,10 +3,12 @@ package com.example.kamil.otomotonotifier.AdEngine.Downloaders;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
+import com.example.kamil.otomotonotifier.AdEngine.Data.Databases.AdEngineDatabase;
 import com.example.kamil.otomotonotifier.AdEngine.Formatters.ParameterFormatter;
 import com.example.kamil.otomotonotifier.AdEngine.Models.Ad;
 import com.example.kamil.otomotonotifier.AdEngine.Models.LastAdId;
 import com.example.kamil.otomotonotifier.AdEngine.Models.Searcher;
+import com.example.kamil.otomotonotifier.Data.Databases.AppDatabase;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -82,7 +84,7 @@ public class SearcherContentDownloader {
     }
 
     private String downloadAndReturnAdIdByKey(String key) {
-        LastAdId lastAdId = AppSearchersDatabase.getDatabase(this.context).getLastAdIdDao().getLastAdId(key);
+        LastAdId lastAdId = AdEngineDatabase.getDatabase(this.context).getLastAdIdDao().getLastAdId(key);
         if (lastAdId == null) {
             return "";
         }
@@ -90,7 +92,7 @@ public class SearcherContentDownloader {
     }
 
     private void saveNewLastAdId(LastAdId adId) {
-        AppSearchersDatabase.getDatabase(this.context).getLastAdIdDao().addLastAdId(adId);
+        AdEngineDatabase.getDatabase(this.context).getLastAdIdDao().addLastAdId(adId);
     }
 
     private String formatStringToUrlString(String key) {

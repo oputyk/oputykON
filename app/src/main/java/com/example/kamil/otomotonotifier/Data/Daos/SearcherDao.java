@@ -6,26 +6,27 @@ import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
 
 import com.example.kamil.otomotonotifier.AdEngine.Models.Searcher;
+import com.example.kamil.otomotonotifier.Models.SearcherEntity;
 
 import java.util.List;
 
 @Dao
 public interface SearcherDao {
     @Insert(onConflict = 1)
-    void addSearcher(Searcher searcher);
+    void addSearcherEntity(SearcherEntity searcherEntity);
 
-    @Query("delete from searcher")
-    void deleteAllSearchers();
+    @Query("delete from SearcherEntity")
+    void deleteAllSearcherEntities();
 
-    @Query("delete from searcher where id = :id")
-    void deleteSearcher(long id);
+    @Query("delete from SearcherEntity where id = :id")
+    void deleteSearcherEntity(long id);
 
-    @Query("select * from searcher")
-    List<Searcher> getAllSearchers();
+    @Query("select * from SearcherEntity")
+    List<SearcherEntity> getAllSearcherEntities();
 
-    @Query("select * from searcher where id= :id")
-    Searcher getSearcher(long id);
+    @Query("select * from SearcherEntity where id= :id")
+    SearcherEntity getSearcherEntity(long id);
 
     @Update(onConflict = 1)
-    void update(Searcher searcher);
+    void updateSearcherEntity(SearcherEntity searcherEntity);
 }
