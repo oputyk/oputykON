@@ -3,7 +3,6 @@ package com.example.kamil.otomotonotifier.AdEngine.Downloaders;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
-import com.example.kamil.otomotonotifier.Data.Databases.AppSearchersDatabase;
 import com.example.kamil.otomotonotifier.AdEngine.Formatters.ParameterFormatter;
 import com.example.kamil.otomotonotifier.AdEngine.Models.Ad;
 import com.example.kamil.otomotonotifier.AdEngine.Models.LastAdId;
@@ -73,7 +72,7 @@ public class SearcherContentDownloader {
         adIterator.initIterator(makeAndReturnUrlByKey(key));
         List<Ad> ads = adIterator.getNewerAdsThan(downloadAndReturnAdIdByKey(key), this.downloadCountLimit);
         if (!ads.isEmpty()) {
-            saveNewLastAdId(new LastAdId(((Ad) ads.get(0)).getAdId(), key));
+            saveNewLastAdId(new LastAdId(((Ad) ads.get(0)).getId(), key));
         }
         return ads;
     }

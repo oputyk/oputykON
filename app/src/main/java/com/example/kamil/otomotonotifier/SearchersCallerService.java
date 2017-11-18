@@ -14,8 +14,6 @@ import com.example.kamil.otomotonotifier.UI.Activities.AdListActivity;
 import com.example.kamil.otomotonotifier.AdEngine.Downloaders.SearcherContentDownloader;
 import com.example.kamil.otomotonotifier.AdEngine.Models.Ad;
 import com.example.kamil.otomotonotifier.AdEngine.Models.Searcher;
-import com.example.kamil.otomotonotifier.Data.Databases.AppAdsDatabase;
-import com.example.kamil.otomotonotifier.Data.Databases.AppSearchersDatabase;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -79,7 +77,7 @@ public class SearchersCallerService extends Service {
     }
 
     private void gatherSearchedAds() throws Exception {
-        //if(!DateBlocker.isBlocked(getBeginningOf2018YearDate())) {
+        //if(!ByDateBlocker.isBlocked(getBeginningOf2018YearDate())) {
             SearcherContentDownloader searcherContentDownloader = new SearcherContentDownloader();
             searcherContentDownloader.downloadSearcherContent(searchers, getApplicationContext());
             for (Searcher searcher : searchers) {

@@ -1,7 +1,5 @@
 package com.example.kamil.otomotonotifier.AdEngine.Models;
 
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
 import java.text.DecimalFormat;
@@ -10,17 +8,14 @@ import java.text.NumberFormat;
 import java.util.Date;
 import java.util.Locale;
 
-@Entity
 public class Ad {
-    String adId;
+    String id;
     String category;
     String city;
     boolean damaged;
     Date date = new Date();
     int engine;
     String fuelType;
-    @PrimaryKey(autoGenerate = true)
-    int id;
     boolean kmNotMth = true;
     String link;
     String make;
@@ -63,23 +58,19 @@ public class Ad {
     }
 
     public boolean equals(Ad ad) {
-        return this.adId.equals(ad.adId);
+        return this.id.equals(ad.id);
     }
 
-    public boolean equals(String adId) {
-        return this.adId.equals(adId);
+    public boolean equals(String id) {
+        return this.id.equals(id);
     }
 
     public void setDate(Date date) {
         this.date = date;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
-    }
-
-    public void setAdId(String adId) {
-        this.adId = adId;
     }
 
     public void setCategory(String category) {
@@ -150,12 +141,8 @@ public class Ad {
         this.seen = seen;
     }
 
-    public int getId() {
+    public String getId() {
         return this.id;
-    }
-
-    public String getAdId() {
-        return this.adId;
     }
 
     public String getCategory() {

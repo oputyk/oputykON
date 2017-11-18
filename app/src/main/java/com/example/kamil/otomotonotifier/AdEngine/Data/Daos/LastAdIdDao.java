@@ -1,4 +1,4 @@
-package com.example.kamil.otomotonotifier.Data.Daos;
+package com.example.kamil.otomotonotifier.AdEngine.Data.Daos;
 
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
@@ -17,15 +17,15 @@ public interface LastAdIdDao {
     @Query("delete from lastAdId")
     void deleteAllLastAdIds();
 
-    @Query("delete from lastAdId where key = :key")
-    void deleteLastAdId(String key);
+    @Query("delete from lastAdId where category = :category")
+    void deleteLastAdId(String category);
 
     @Query("select * from lastAdId")
     List<LastAdId> getAllLastAdIds();
 
-    @Query("select * from lastAdId where key= :key")
-    LastAdId getLastAdId(String key);
+    @Query("select * from lastAdId where category= :category")
+    LastAdId getLastAdId(String category);
 
     @Update(onConflict = 1)
-    void update(LastAdId lastAdId);
+    void updateLastAdId(LastAdId lastAdId);
 }

@@ -6,26 +6,27 @@ import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
 
 import com.example.kamil.otomotonotifier.AdEngine.Models.Ad;
+import com.example.kamil.otomotonotifier.Models.AdEntity;
 
 import java.util.List;
 
 @Dao
 public interface AdDao {
     @Insert(onConflict = 1)
-    void addAd(Ad ad);
+    void addAdEntity(AdEntity ad);
 
-    @Query("delete from ad where adId = :adId")
-    void deleteAd(String adId);
+    @Query("delete from AdEntity where id = :id")
+    void deleteAdEntity(String id);
 
-    @Query("delete from ad")
-    void deleteAllAds();
+    @Query("delete from AdEntity")
+    void deleteAllAdEntities();
 
-    @Query("select * from ad where adId = :adId")
-    Ad getAd(String adId);
+    @Query("select * from AdEntity where id = :id")
+    AdEntity AdEntity(String id);
 
-    @Query("select * from ad")
-    List<Ad> getAllAds();
+    @Query("select * from AdEntity")
+    List<AdEntity> getAllAdEntities();
 
     @Update(onConflict = 1)
-    void update(Ad ad);
+    void updateAdEntity(AdEntity adEntity);
 }

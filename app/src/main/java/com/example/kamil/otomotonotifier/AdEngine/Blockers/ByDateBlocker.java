@@ -7,7 +7,7 @@ import java.util.Date;
  * Created by kamil on 28/10/2017.
  */
 
-public class DateBlocker {
+public class ByDateBlocker {
     static public boolean isBlocked(Date blockDay) {
         Date now = Calendar.getInstance().getTime();
         return now.after(blockDay);

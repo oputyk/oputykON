@@ -1,14 +1,8 @@
 package com.example.kamil.otomotonotifier.AdEngine.Models;
 
-import android.arch.persistence.room.Entity;
-import android.arch.persistence.room.PrimaryKey;
-
-@Entity
 public class Searcher {
     private String category = null;
     private String categoryCode = null;
-    @PrimaryKey(autoGenerate = true)
-    private int id;
     private String make = null;
     private Integer maxPrice = null;
     private Integer maxYear = null;
@@ -23,14 +17,6 @@ public class Searcher {
 
     public String toString() {
         return this.make != null ? this.make : "";
-    }
-
-    public int getId() {
-        return this.id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getCategory() {

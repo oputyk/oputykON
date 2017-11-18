@@ -14,7 +14,6 @@ import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.kamil.otomotonotifier.Data.Databases.AppSearchersDatabase;
 import com.example.kamil.otomotonotifier.R;
 import com.example.kamil.otomotonotifier.AdEngine.Models.Searcher;
 import com.example.kamil.otomotonotifier.UI.Adapters.SearcherArrayAdapter;
@@ -25,8 +24,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class SearcherListActivity extends AppCompatActivity implements OnItemClickListener, OnItemLongClickListener {
-    @BindView(R.id.dataUsageTextView) TextView dataUsageTextView;
-    @BindView(R.id.searcherListView) ListView searcherListView;
+    @BindView(R.id.dataUsageTextView) public TextView dataUsageTextView;
+    @BindView(R.id.searcherListView) public ListView searcherListView;
     List<Searcher> searchers;
     private int mbUsage = 1000;
 

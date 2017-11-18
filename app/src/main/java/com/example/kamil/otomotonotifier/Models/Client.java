@@ -15,8 +15,6 @@ public class Client {
     Date payDeadline;
     boolean active;
 
-    public Client() {}
-
     public Client(String phoneNumber, Date payDeadline, boolean active) {
         this.phoneNumber = phoneNumber;
         this.payDeadline = payDeadline;

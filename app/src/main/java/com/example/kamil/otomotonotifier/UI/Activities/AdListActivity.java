@@ -14,7 +14,6 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import com.example.kamil.otomotonotifier.AdEngine.Models.Ad;
-import com.example.kamil.otomotonotifier.Data.Databases.AppAdsDatabase;
 import com.example.kamil.otomotonotifier.R;
 import com.example.kamil.otomotonotifier.UI.Adapters.SearchedAdArrayAdapter;
 import com.example.kamil.otomotonotifier.SearchersCaller;
@@ -31,8 +30,7 @@ public class AdListActivity extends AppCompatActivity implements OnItemClickList
     private AlarmManager alarmMgr = null;
     private ListView searchedAdListView;
     private int refreshTimeInMinutes = 1;
-    @BindView(R.id.clearAllAdsButton)
-    private Button clearAllAdsButton;
+    @BindView(R.id.clearAllAdsButton) public Button clearAllAdsButton;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

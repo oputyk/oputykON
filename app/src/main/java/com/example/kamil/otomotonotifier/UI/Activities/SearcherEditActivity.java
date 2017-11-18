@@ -10,7 +10,6 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.example.kamil.otomotonotifier.Data.Databases.AppSearchersDatabase;
 import com.example.kamil.otomotonotifier.AdEngine.Models.Category;
 import com.example.kamil.otomotonotifier.AdEngine.Downloaders.CategoryDownloader;
 import com.example.kamil.otomotonotifier.R;
@@ -24,17 +23,17 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class SearcherEditActivity extends AppCompatActivity {
-    @BindView(R.id.categorySpinner) Spinner categorySpinner;
-    @BindView(R.id.subcategorySpinner) Spinner subcategorySpinner;
-    @BindView(R.id.makeEdit) EditText makeEdit;
-    @BindView(R.id.modelEdit) EditText modelEdit;
-    @BindView(R.id.versionEdit) EditText versionEdit;
-    @BindView(R.id.typeEdit) EditText typeEdit;
-    @BindView(R.id.minPriceEdit) EditText minPriceEdit;
-    @BindView(R.id.maxPriceEdit) EditText maxPriceEdit;
-    @BindView(R.id.minYearEdit) EditText minYearEdit;
-    @BindView(R.id.maxYearEdit) EditText maxYearEdit;
-    @BindView(R.id.fuelTypeEdit) EditText fuelTypeEdit;
+    @BindView(R.id.categorySpinner) public Spinner categorySpinner;
+    @BindView(R.id.subcategorySpinner) public Spinner subcategorySpinner;
+    @BindView(R.id.makeEdit) public EditText makeEdit;
+    @BindView(R.id.modelEdit) public EditText modelEdit;
+    @BindView(R.id.versionEdit) public EditText versionEdit;
+    @BindView(R.id.typeEdit) public EditText typeEdit;
+    @BindView(R.id.minPriceEdit) public EditText minPriceEdit;
+    @BindView(R.id.maxPriceEdit) public EditText maxPriceEdit;
+    @BindView(R.id.minYearEdit) public EditText minYearEdit;
+    @BindView(R.id.maxYearEdit) public EditText maxYearEdit;
+    @BindView(R.id.fuelTypeEdit) public EditText fuelTypeEdit;
 
     Searcher searcher = new Searcher();
     static List<Category> categoryList = new ArrayList<>();
