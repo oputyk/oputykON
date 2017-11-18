@@ -13,14 +13,13 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ListView;
 
-import com.example.kamil.otomotonotifier.AdEngine.AdEngine;
 import com.example.kamil.otomotonotifier.AdEngine.Models.Ad;
 import com.example.kamil.otomotonotifier.Converters.EntityConverter;
 import com.example.kamil.otomotonotifier.Data.Databases.AppDatabase;
 import com.example.kamil.otomotonotifier.Models.AdEntity;
 import com.example.kamil.otomotonotifier.R;
 import com.example.kamil.otomotonotifier.UI.Adapters.SearchedAdArrayAdapter;
-import com.example.kamil.otomotonotifier.SearchersCaller;
+import com.example.kamil.otomotonotifier.SearchersCallerReceiver;
 
 import java.util.Collections;
 import java.util.List;
@@ -86,13 +85,13 @@ public class AdListActivity extends AppCompatActivity implements OnItemClickList
 
     public void initBroadCastReceiver() {
         alarmMgr = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        Intent intent = new Intent(this, SearchersCaller.class);
+        Intent intent = new Intent(this, SearchersCallerReceiver.class);
         alarmIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
         alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), refreshTimeInMinutes * 60000, alarmIntent);
     }
 
     private boolean isBroadCastReveiverSet() {
-        return PendingIntent.getBroadcast(this, 0, new Intent(this, SearchersCaller.class), PendingIntent.FLAG_NO_CREATE) != null;
+        return PendingIntent.getBroadcast(this, 0, new Intent(this, SearchersCallerReceiver.class), PendingIntent.FLAG_NO_CREATE) != null;
     }
 
     private void downloadAds() {

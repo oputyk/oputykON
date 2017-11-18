@@ -15,7 +15,7 @@ public class BootCompletedReceiver extends BroadcastReceiver {
 
     public void initBroadCastReceiver(Context context) {
         AlarmManager alarmMgr = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        Intent intent = new Intent(context, SearchersCaller.class);
+        Intent intent = new Intent(context, SearchersCallerReceiver.class);
         PendingIntent alarmIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
         alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 60000, alarmIntent);
     }

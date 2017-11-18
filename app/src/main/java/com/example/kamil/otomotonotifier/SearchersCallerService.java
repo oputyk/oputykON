@@ -9,6 +9,7 @@ import android.os.IBinder;
 import android.support.v4.app.NotificationCompat.Builder;
 
 import com.example.kamil.otomotonotifier.AdEngine.AdEngine;
+import com.example.kamil.otomotonotifier.Converters.EntityConverter;
 import com.example.kamil.otomotonotifier.Data.Databases.AppDatabase;
 import com.example.kamil.otomotonotifier.Models.AdEntity;
 import com.example.kamil.otomotonotifier.Models.SearcherEntity;
@@ -43,7 +44,7 @@ public class SearchersCallerService extends Service {
 
     private void FindAndSaveNewSearchedAdEntites() throws Exception {
         downloadSearchers();
-        AdEngine.findNewAdsBySearchers(getSearchersFromSearcherEntities(), getApplicationContext());
+        AdEngine.findNewAdsBySearchers(EntityConverter.SearcherEntitiesToSearchers(searcherEntities), getApplicationContext());
         if (!newSearchedAdEntities.isEmpty()) {
             notifyAboutSearchedAds(searchedAdsToString());
         }
@@ -72,14 +73,6 @@ public class SearchersCallerService extends Service {
             stringBuilder.append(ad + "\n");
         }
         return stringBuilder.toString();
-    }
-
-    private List<Searcher> getSearchersFromSearcherEntities() {
-        List<Searcher> searchers = new ArrayList<>();
-        for(SearcherEntity searcherEntity : searcherEntities) {
-            searchers.add(searcherEntity.getSearcher());
-        }
-        return searchers;
     }
 
     private void saveSearchedAds() {

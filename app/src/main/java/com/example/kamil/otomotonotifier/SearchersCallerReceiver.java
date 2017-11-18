@@ -9,7 +9,7 @@ import android.support.v4.app.NotificationCompat;
 
 import java.util.Date;
 
-public class SearchersCaller extends BroadcastReceiver {
+public class SearchersCallerReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         context.startService(new Intent(context, SearchersCallerService.class));
     }
