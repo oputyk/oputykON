@@ -6,11 +6,11 @@ import android.arch.persistence.room.PrimaryKey;
 @Entity
 public class LastAdId {
     @PrimaryKey
-    public String key;
+    public String category;
     public String lastAdId;
 
-    public LastAdId(String lastAdId, String key) {
+    public LastAdId(String lastAdId, String category) {
         this.lastAdId = lastAdId;
-        this.key = key;
+        this.category = category;
     }
 }

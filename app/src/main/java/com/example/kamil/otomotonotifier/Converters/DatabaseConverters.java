@@ -1,9 +1,9 @@
-package com.example.kamil.otomotonotifier.Data.Converters;
+package com.example.kamil.otomotonotifier.Converters;
 
 import android.arch.persistence.room.TypeConverter;
 import java.util.Date;
 
-public class Converters {
+public class DatabaseConverters {
     @TypeConverter
     public static Date fromTimestamp(Long value) {
         return value == null ? null : new Date(value.longValue());

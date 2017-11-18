@@ -9,7 +9,7 @@ import java.util.Date;
 import java.util.Locale;
 
 public class Ad {
-    String id;
+    String adId;
     String category;
     String city;
     boolean damaged;
@@ -58,19 +58,19 @@ public class Ad {
     }
 
     public boolean equals(Ad ad) {
-        return this.id.equals(ad.id);
+        return this.adId.equals(ad.adId);
     }
 
     public boolean equals(String id) {
-        return this.id.equals(id);
+        return this.adId.equals(id);
     }
 
     public void setDate(Date date) {
         this.date = date;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setAdId(String adId) {
+        this.adId = adId;
     }
 
     public void setCategory(String category) {
@@ -141,8 +141,8 @@ public class Ad {
         this.seen = seen;
     }
 
-    public String getId() {
-        return this.id;
+    public String getAdId() {
+        return this.adId;
     }
 
     public String getCategory() {

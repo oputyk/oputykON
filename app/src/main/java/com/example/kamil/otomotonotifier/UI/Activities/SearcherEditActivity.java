@@ -12,6 +12,8 @@ import android.widget.Toast;
 
 import com.example.kamil.otomotonotifier.AdEngine.Models.Category;
 import com.example.kamil.otomotonotifier.AdEngine.Downloaders.CategoryDownloader;
+import com.example.kamil.otomotonotifier.Data.Databases.AppDatabase;
+import com.example.kamil.otomotonotifier.Models.SearcherEntity;
 import com.example.kamil.otomotonotifier.R;
 import com.example.kamil.otomotonotifier.AdEngine.Models.Searcher;
 
@@ -36,6 +38,7 @@ public class SearcherEditActivity extends AppCompatActivity {
     @BindView(R.id.fuelTypeEdit) public EditText fuelTypeEdit;
 
     Searcher searcher = new Searcher();
+    int clientId;
     static List<Category> categoryList = new ArrayList<>();
     List<Category> subcategoryList = new ArrayList<>();
 
@@ -43,6 +46,10 @@ public class SearcherEditActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_searcher_edit);
         ButterKnife.bind(this);
+        clientId = getIntent().getIntExtra("clientId", -1);
+        if(clientId == -1) {
+            throw new RuntimeException("No clientId in SearcherEditActivity!!");
+        }
         initComponents();
         downloadCategoryList();
         fillInCategoryList();
@@ -56,7 +63,7 @@ public class SearcherEditActivity extends AppCompatActivity {
         updateSearcherByUI();
         if (!searcher.getCategory().equalsIgnoreCase("osobowe") || searcher.getMake() != null) {
             if (isOsoboweOk()) {
-                AppSearchersDatabase.getDatabase(getApplicationContext()).getSearcherDao().addSearcher(searcher);
+                AppDatabase.getDatabase(getApplicationContext()).getSearcherDao().addSearcherEntity(new SearcherEntity(0, clientId, searcher));
                 finish();
             } else {
                 Toast.makeText(this, "Nie ma takiej marki samochodu osobowego!", Toast.LENGTH_LONG).show();
@@ -292,7 +299,7 @@ public class SearcherEditActivity extends AppCompatActivity {
     }
 
     private void downloadSearcher() {
-        searcher = AppSearchersDatabase.getDatabase(getApplicationContext()).getSearcherDao().getSearcher((long) getIntent().getIntExtra("searcherId", -1));
+        searcher = AppDatabase.getDatabase(getApplicationContext()).getSearcherDao().getSearcherEntity((long) getIntent().getIntExtra("searcherId", -1)).getSearcher();
     }
 
     private void updateUIBySearcher() {

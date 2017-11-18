@@ -14,6 +14,9 @@ import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.kamil.otomotonotifier.Converters.EntityConverter;
+import com.example.kamil.otomotonotifier.Data.Databases.AppDatabase;
+import com.example.kamil.otomotonotifier.Models.SearcherEntity;
 import com.example.kamil.otomotonotifier.R;
 import com.example.kamil.otomotonotifier.AdEngine.Models.Searcher;
 import com.example.kamil.otomotonotifier.UI.Adapters.SearcherArrayAdapter;
@@ -26,7 +29,7 @@ import butterknife.ButterKnife;
 public class SearcherListActivity extends AppCompatActivity implements OnItemClickListener, OnItemLongClickListener {
     @BindView(R.id.dataUsageTextView) public TextView dataUsageTextView;
     @BindView(R.id.searcherListView) public ListView searcherListView;
-    List<Searcher> searchers;
+    List<SearcherEntity> searcherEntities;
     private int mbUsage = 1000;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,16 +40,16 @@ public class SearcherListActivity extends AppCompatActivity implements OnItemCli
     }
 
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        goToSearcherEditActivity(((Searcher) parent.getItemAtPosition(position)).getId());
+        goToSearcherEditActivity(((SearcherEntity) parent.getItemAtPosition(position)).getId());
     }
 
     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-        final Searcher searcher = (Searcher) parent.getItemAtPosition(position);
+        final SearcherEntity searcherEntity = (SearcherEntity) parent.getItemAtPosition(position);
         Builder alertDialogBuilder = new Builder(this);
         alertDialogBuilder.setMessage("Czy chcesz usunąć tego obserwatora?");
         alertDialogBuilder.setPositiveButton("Tak", new OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                AppSearchersDatabase.getDatabase(SearcherListActivity.this.getApplicationContext()).getSearcherDao().deleteSearcher(searcher.getId());
+                AppDatabase.getDatabase(SearcherListActivity.this.getApplicationContext()).getSearcherDao().deleteSearcherEntity(searcherEntity.getId());
                 SearcherListActivity.this.update();
             }
         });
@@ -87,11 +90,11 @@ public class SearcherListActivity extends AppCompatActivity implements OnItemCli
     }
 
     private void updateListView() {
-        searcherListView.setAdapter(new SearcherArrayAdapter(this, searchers));
+        searcherListView.setAdapter(new SearcherArrayAdapter(this, EntityConverter.SearcherEntitiesToSearchers(searcherEntities)));
     }
 
     private void downloadSearchers() {
-        searchers = AppSearchersDatabase.getDatabase(getApplicationContext()).getSearcherDao().getAllSearchers();
+        searcherEntities = AppDatabase.getDatabase(getApplicationContext()).getSearcherDao().getAllSearcherEntities();
     }
 
     private void updateDataUsage() {
@@ -104,6 +107,6 @@ public class SearcherListActivity extends AppCompatActivity implements OnItemCli
     }
 
     private int computeDataUsage() {
-        return searchers.size() * mbUsage;
+        return searcherEntities.size() * mbUsage;
     }
 }

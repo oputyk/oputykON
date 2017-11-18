@@ -13,7 +13,11 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.example.kamil.otomotonotifier.AdEngine.AdEngine;
 import com.example.kamil.otomotonotifier.AdEngine.Models.Ad;
+import com.example.kamil.otomotonotifier.Converters.EntityConverter;
+import com.example.kamil.otomotonotifier.Data.Databases.AppDatabase;
+import com.example.kamil.otomotonotifier.Models.AdEntity;
 import com.example.kamil.otomotonotifier.R;
 import com.example.kamil.otomotonotifier.UI.Adapters.SearchedAdArrayAdapter;
 import com.example.kamil.otomotonotifier.SearchersCaller;
@@ -25,7 +29,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class AdListActivity extends AppCompatActivity implements OnItemClickListener {
-    private List<Ad> ads;
+    private List<AdEntity> adEntities;
     private PendingIntent alarmIntent;
     private AlarmManager alarmMgr = null;
     private ListView searchedAdListView;
@@ -52,7 +56,7 @@ public class AdListActivity extends AppCompatActivity implements OnItemClickList
     }
 
     public void clearAllAds(View view) {
-        AppAdsDatabase.getDatabase(getApplicationContext()).getAdDao().deleteAllAds();
+        AppDatabase.getDatabase(getApplicationContext()).getAdDao().deleteAllAdEntities();
         update();
     }
 
@@ -77,7 +81,7 @@ public class AdListActivity extends AppCompatActivity implements OnItemClickList
     }
 
     private void updateListView() {
-        searchedAdListView.setAdapter(new SearchedAdArrayAdapter(this, ads));
+        searchedAdListView.setAdapter(new SearchedAdArrayAdapter(this, EntityConverter.AdEntitiesToAds(adEntities)));
     }
 
     public void initBroadCastReceiver() {
@@ -92,8 +96,8 @@ public class AdListActivity extends AppCompatActivity implements OnItemClickList
     }
 
     private void downloadAds() {
-        ads = AppAdsDatabase.getDatabase(getApplicationContext()).getAdDao().getAllAds();
-        Collections.reverse(ads);
+        adEntities = AppDatabase.getDatabase(getApplicationContext()).getAdDao().getAllAdEntities();
+        Collections.reverse(adEntities);
     }
 
     private String makeClearAllAdsButttonText() {
@@ -101,7 +105,7 @@ public class AdListActivity extends AppCompatActivity implements OnItemClickList
         String baseText = getResources().getString(R.string.clear_all_ads);
         stringBuilder.append(baseText);
         stringBuilder.append(" (");
-        stringBuilder.append(ads.size());
+        stringBuilder.append(adEntities.size());
         stringBuilder.append(")");
         return stringBuilder.toString();
     }

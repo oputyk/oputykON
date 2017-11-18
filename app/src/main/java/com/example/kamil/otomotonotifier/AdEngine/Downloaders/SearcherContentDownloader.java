@@ -8,7 +8,6 @@ import com.example.kamil.otomotonotifier.AdEngine.Formatters.ParameterFormatter;
 import com.example.kamil.otomotonotifier.AdEngine.Models.Ad;
 import com.example.kamil.otomotonotifier.AdEngine.Models.LastAdId;
 import com.example.kamil.otomotonotifier.AdEngine.Models.Searcher;
-import com.example.kamil.otomotonotifier.Data.Databases.AppDatabase;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -74,7 +73,7 @@ public class SearcherContentDownloader {
         adIterator.initIterator(makeAndReturnUrlByKey(key));
         List<Ad> ads = adIterator.getNewerAdsThan(downloadAndReturnAdIdByKey(key), this.downloadCountLimit);
         if (!ads.isEmpty()) {
-            saveNewLastAdId(new LastAdId(((Ad) ads.get(0)).getId(), key));
+            saveNewLastAdId(new LastAdId(((Ad) ads.get(0)).getAdId(), key));
         }
         return ads;
     }
