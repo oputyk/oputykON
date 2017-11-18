@@ -5,8 +5,7 @@ import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
 
-import com.example.kamil.otomotonotifier.AdEngine.Models.LastAdId;
-import com.example.kamil.otomotonotifier.Data.Models.Client;
+import com.example.kamil.otomotonotifier.Models.Client;
 
 import java.util.List;
 

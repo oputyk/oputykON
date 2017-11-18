@@ -20,26 +20,30 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SearcherEditActivity extends AppCompatActivity {
-    Searcher searcher = new Searcher();
-    Spinner categorySpinner;
-    Spinner subcategorySpinner;
-    EditText makeEdit;
-    EditText modelEdit;
-    EditText versionEdit;
-    EditText typeEdit;
-    EditText minPriceEdit;
-    EditText maxPriceEdit;
-    EditText minYearEdit;
-    EditText maxYearEdit;
-    EditText fuelTypeEdit;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
+public class SearcherEditActivity extends AppCompatActivity {
+    @BindView(R.id.categorySpinner) Spinner categorySpinner;
+    @BindView(R.id.subcategorySpinner) Spinner subcategorySpinner;
+    @BindView(R.id.makeEdit) EditText makeEdit;
+    @BindView(R.id.modelEdit) EditText modelEdit;
+    @BindView(R.id.versionEdit) EditText versionEdit;
+    @BindView(R.id.typeEdit) EditText typeEdit;
+    @BindView(R.id.minPriceEdit) EditText minPriceEdit;
+    @BindView(R.id.maxPriceEdit) EditText maxPriceEdit;
+    @BindView(R.id.minYearEdit) EditText minYearEdit;
+    @BindView(R.id.maxYearEdit) EditText maxYearEdit;
+    @BindView(R.id.fuelTypeEdit) EditText fuelTypeEdit;
+
+    Searcher searcher = new Searcher();
     static List<Category> categoryList = new ArrayList<>();
     List<Category> subcategoryList = new ArrayList<>();
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_searcher_edit);
+        ButterKnife.bind(this);
         initComponents();
         downloadCategoryList();
         fillInCategoryList();
@@ -216,7 +220,6 @@ public class SearcherEditActivity extends AppCompatActivity {
     }
 
     private void initComponents() {
-        findViews();
         categorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -250,20 +253,6 @@ public class SearcherEditActivity extends AppCompatActivity {
 
             }
         });
-    }
-
-    private void findViews() {
-        categorySpinner = findViewById(R.id.categorySpinner);
-        subcategorySpinner = findViewById(R.id.subcategorySpinner);
-        makeEdit = findViewById(R.id.makeEdit);
-        modelEdit = findViewById(R.id.modelEdit);
-        versionEdit = findViewById(R.id.versionEdit);
-        typeEdit = findViewById(R.id.typeEdit);
-        minPriceEdit = findViewById(R.id.minPriceEdit);
-        maxPriceEdit = findViewById(R.id.maxPriceEdit);
-        minYearEdit = findViewById(R.id.minYearEdit);
-        maxYearEdit = findViewById(R.id.maxYearEdit);
-        fuelTypeEdit = findViewById(R.id.fuelTypeEdit);
     }
 
 

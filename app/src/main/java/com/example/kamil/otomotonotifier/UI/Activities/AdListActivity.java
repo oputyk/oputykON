@@ -22,18 +22,22 @@ import com.example.kamil.otomotonotifier.SearchersCaller;
 import java.util.Collections;
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class AdListActivity extends AppCompatActivity implements OnItemClickListener {
     private List<Ad> ads;
     private PendingIntent alarmIntent;
     private AlarmManager alarmMgr = null;
     private ListView searchedAdListView;
     private int refreshTimeInMinutes = 1;
-    Button clearAllAdsButton;
+    @BindView(R.id.clearAllAdsButton)
+    private Button clearAllAdsButton;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initClearAllAdsButton();
+        ButterKnife.bind(this);
         if (!isBroadCastReveiverSet()) {
             initBroadCastReceiver();
         }
@@ -56,10 +60,6 @@ public class AdListActivity extends AppCompatActivity implements OnItemClickList
 
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         startActivity(new Intent("android.intent.action.VIEW", Uri.parse(((Ad) parent.getItemAtPosition(position)).getLink())));
-    }
-
-    private void initClearAllAdsButton() {
-        clearAllAdsButton = (Button)findViewById(R.id.clearAllAdsButton);
     }
 
     private void initsearchedAdListView() {

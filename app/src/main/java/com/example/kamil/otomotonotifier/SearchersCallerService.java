@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.support.v4.app.NotificationCompat.Builder;
 
+import com.example.kamil.otomotonotifier.AdEngine.Converters.SearcherToFilterContainerConverter;
+import com.example.kamil.otomotonotifier.AdEngine.Filters.FilterContainer;
 import com.example.kamil.otomotonotifier.UI.Activities.AdListActivity;
 import com.example.kamil.otomotonotifier.AdEngine.Downloaders.SearcherContentDownloader;
 import com.example.kamil.otomotonotifier.AdEngine.Models.Ad;
@@ -81,12 +83,18 @@ public class SearchersCallerService extends Service {
             SearcherContentDownloader searcherContentDownloader = new SearcherContentDownloader();
             searcherContentDownloader.downloadSearcherContent(searchers, getApplicationContext());
             for (Searcher searcher : searchers) {
-                List<Ad> ads = searcher.searchInAds(searcherContentDownloader.getAdListForSearcher(searcher));
+                List<Ad> ads = searchInAdsBySearcher(searcherContentDownloader.getAdListForSearcher(searcher), searcher);
                 for (Ad ad : ads) {
                     newSearchedAds.add(ad);
                 }
             }
         //}
+    }
+
+    private List<Ad> searchInAdsBySearcher(List<Ad> ads, Searcher searcher) {
+        SearcherToFilterContainerConverter converter = new SearcherToFilterContainerConverter();
+        FilterContainer filterContainer = converter.convertSearcherToFilterContainer(searcher);
+        return filterContainer.filterAds(ads);
     }
 
     private Date getBeginningOf2018YearDate() {

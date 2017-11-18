@@ -1,6 +1,6 @@
 package com.example.kamil.otomotonotifier.AdEngine.Filters;
 
-import com.example.kamil.otomotonotifier.Formatters.DiacriticalMarksToEnglishFormatter;
+import com.example.kamil.otomotonotifier.AdEngine.Formatters.DiacriticalMarksToEnglishFormatter;
 
 /**
  * Created by kamil on 01/09/2017.

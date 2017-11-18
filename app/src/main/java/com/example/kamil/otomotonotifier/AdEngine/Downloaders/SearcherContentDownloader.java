@@ -4,7 +4,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.example.kamil.otomotonotifier.Data.Databases.AppSearchersDatabase;
-import com.example.kamil.otomotonotifier.Formatters.ParameterFormatter;
+import com.example.kamil.otomotonotifier.AdEngine.Formatters.ParameterFormatter;
 import com.example.kamil.otomotonotifier.AdEngine.Models.Ad;
 import com.example.kamil.otomotonotifier.AdEngine.Models.LastAdId;
 import com.example.kamil.otomotonotifier.AdEngine.Models.Searcher;

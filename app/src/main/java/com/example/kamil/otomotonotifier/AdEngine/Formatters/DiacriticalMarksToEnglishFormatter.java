@@ -1,4 +1,4 @@
-package com.example.kamil.otomotonotifier.Formatters;
+package com.example.kamil.otomotonotifier.AdEngine.Formatters;
 
 import java.util.HashMap;
 

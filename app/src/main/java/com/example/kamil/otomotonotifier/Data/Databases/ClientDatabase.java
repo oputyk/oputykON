@@ -12,7 +12,7 @@ import android.content.Context;
 
 import com.example.kamil.otomotonotifier.Data.Converters.Converters;
 import com.example.kamil.otomotonotifier.Data.Daos.ClientDao;
-import com.example.kamil.otomotonotifier.Data.Models.Client;
+import com.example.kamil.otomotonotifier.Models.Client;
 
 @Database(entities = {Client.class}, exportSchema = false, version = 1)
 @TypeConverters({Converters.class})

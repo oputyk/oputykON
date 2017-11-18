@@ -3,11 +3,6 @@ package com.example.kamil.otomotonotifier.AdEngine.Models;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
-import com.example.kamil.otomotonotifier.AdEngine.Converters.SearcherToFilterContainerConverter;
-import com.example.kamil.otomotonotifier.AdEngine.Filters.FilterContainer;
-
-import java.util.List;
-
 @Entity
 public class Searcher {
     private String category = null;
@@ -29,13 +24,6 @@ public class Searcher {
     public String toString() {
         return this.make != null ? this.make : "";
     }
-
-    public List<Ad> searchInAds(List<Ad> ads) throws Exception { //TODO: move the function to new class
-        SearcherToFilterContainerConverter converter = new SearcherToFilterContainerConverter();
-        FilterContainer filterContainer = converter.convertSearcherToFilterContainer(this);
-        return filterContainer.filterAds(ads);
-    }
-
 
     public int getId() {
         return this.id;

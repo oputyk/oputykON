@@ -21,16 +21,19 @@ import com.example.kamil.otomotonotifier.UI.Adapters.SearcherArrayAdapter;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class SearcherListActivity extends AppCompatActivity implements OnItemClickListener, OnItemLongClickListener {
-    TextView dataUsageTextView;
-    ListView searcherListView;
+    @BindView(R.id.dataUsageTextView) TextView dataUsageTextView;
+    @BindView(R.id.searcherListView) ListView searcherListView;
     List<Searcher> searchers;
     private int mbUsage = 1000;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_searcher_list);
-        initDataUsageTextView();
+        ButterKnife.bind(this);
         initSearcherListView();
     }
 
@@ -74,7 +77,6 @@ public class SearcherListActivity extends AppCompatActivity implements OnItemCli
     }
 
     private void initSearcherListView() {
-        searcherListView = (ListView) findViewById(R.id.searcherListView);
         searcherListView.setOnItemClickListener(this);
         searcherListView.setOnItemLongClickListener(this);
     }
@@ -91,10 +93,6 @@ public class SearcherListActivity extends AppCompatActivity implements OnItemCli
 
     private void downloadSearchers() {
         searchers = AppSearchersDatabase.getDatabase(getApplicationContext()).getSearcherDao().getAllSearchers();
-    }
-
-    private void initDataUsageTextView() {
-        dataUsageTextView = (TextView) findViewById(R.id.dataUsageTextView);
     }
 
     private void updateDataUsage() {
