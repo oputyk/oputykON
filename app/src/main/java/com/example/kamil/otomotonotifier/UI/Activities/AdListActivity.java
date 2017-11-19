@@ -34,6 +34,7 @@ public class AdListActivity extends AppCompatActivity implements OnItemClickList
     private ListView searchedAdListView;
     private int refreshTimeInMinutes = 1;
     @BindView(R.id.clearAllAdsButton) public Button clearAllAdsButton;
+    private static String sharedPrefName = "sharedPref";
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,10 +89,11 @@ public class AdListActivity extends AppCompatActivity implements OnItemClickList
         Intent intent = new Intent(this, SearchersCallerReceiver.class);
         alarmIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
         alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), refreshTimeInMinutes * 60000, alarmIntent);
+        getSharedPreferences(sharedPrefName, MODE_PRIVATE).edit().putBoolean("isBroadCastReveiverSet", true).commit();
     }
 
     private boolean isBroadCastReveiverSet() {
-        return PendingIntent.getBroadcast(this, 0, new Intent(this, SearchersCallerReceiver.class), PendingIntent.FLAG_NO_CREATE) != null;
+        return getSharedPreferences(sharedPrefName, MODE_PRIVATE).contains("isBroadCastReveiverSet");
     }
 
     private void downloadAds() {
