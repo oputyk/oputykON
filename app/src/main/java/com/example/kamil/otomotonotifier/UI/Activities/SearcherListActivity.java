@@ -4,7 +4,6 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog.Builder;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -18,7 +17,6 @@ import com.example.kamil.otomotonotifier.Converters.EntityConverter;
 import com.example.kamil.otomotonotifier.Data.Databases.AppDatabase;
 import com.example.kamil.otomotonotifier.Models.SearcherEntity;
 import com.example.kamil.otomotonotifier.R;
-import com.example.kamil.otomotonotifier.AdEngine.Models.Searcher;
 import com.example.kamil.otomotonotifier.UI.Adapters.SearcherArrayAdapter;
 
 import java.util.List;
@@ -30,13 +28,21 @@ public class SearcherListActivity extends AppCompatActivity implements OnItemCli
     @BindView(R.id.dataUsageTextView) public TextView dataUsageTextView;
     @BindView(R.id.searcherListView) public ListView searcherListView;
     List<SearcherEntity> searcherEntities;
-    private int mbUsage = 1000;
+    private int clientId;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_searcher_list);
         ButterKnife.bind(this);
+        retrieveClientId();
         initSearcherListView();
+    }
+
+    private void retrieveClientId() {
+        clientId = getIntent().getIntExtra("clientId", -1);
+        if(clientId == -1) {
+            throw new RuntimeException("No clientId in SearcherListActivity.");
+        }
     }
 
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -86,7 +92,6 @@ public class SearcherListActivity extends AppCompatActivity implements OnItemCli
     private void update() {
         downloadSearchers();
         updateListView();
-        updateDataUsage();
     }
 
     private void updateListView() {
@@ -95,18 +100,5 @@ public class SearcherListActivity extends AppCompatActivity implements OnItemCli
 
     private void downloadSearchers() {
         searcherEntities = AppDatabase.getDatabase(getApplicationContext()).getSearcherDao().getAllSearcherEntities();
-    }
-
-    private void updateDataUsage() {
-        dataUsageTextView.setText(makeAndReturnDataUsageString());
-    }
-
-    @NonNull
-    private String makeAndReturnDataUsageString() {
-        return getResources().getString(R.string.data_usage) + " " + Integer.toString(computeDataUsage()) + "MB";
-    }
-
-    private int computeDataUsage() {
-        return searcherEntities.size() * mbUsage;
     }
 }

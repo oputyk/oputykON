@@ -57,7 +57,7 @@ public class SearcherArrayAdapter extends ArrayAdapter<Searcher> {
             this.view = inflateAndReturnView();
             this.view.setTag(makeAndReturnViewHolder());
         }
-        ((ViewHolder) this.view.getTag()).updateBySearcher((Searcher) getItem(position));
+        ((ViewHolder) this.view.getTag()).updateBySearcher(getItem(position));
         return this.view;
     }
 

@@ -4,9 +4,7 @@
     android:orientation="vertical" android:layout_width="match_parent" android:layout_height="match_parent" android:weightSum="100.0">
 
     <ListView
-        android:id="@+id/searcherListView"
+        android:id="@+id/clientListView"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="90" />
-    <Button android:id="@+id/addSearcher" android:layout_width="match_parent" android:layout_height="0dp" android:text="@string/add_searcher" android:layout_weight="10.0" android:onClick="goToSearcherEditActivity" />
+        android:layout_height="match_parent" />
 </LinearLayout>

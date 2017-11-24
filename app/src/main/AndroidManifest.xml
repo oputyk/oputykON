@@ -55,12 +55,14 @@
             android:name=".UI.Activities.SearcherEditActivity"
             android:screenOrientation="portrait" />
 
-        <receiver android:name=".BootCompletedReceiver" >
+        <receiver android:name=".BootCompletedReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.intent.action.QUICKBOOT_POWERON" />
             </intent-filter>
         </receiver>
+
+        <activity android:name=".UI.Activities.ClientListActivity"></activity>
     </application>
 
 </manifest>
