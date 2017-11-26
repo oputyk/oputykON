@@ -16,12 +16,12 @@ public class AdEntity {
     int id;
     @Embedded
     Ad ad;
-    int idSearcher;
+    int searcherId;
 
-    public AdEntity(int id, Ad ad, int idSearcher) {
+    public AdEntity(int id, Ad ad, int searcherId) {
         this.id = id;
         this.ad = ad;
-        this.idSearcher = idSearcher;
+        this.searcherId = searcherId;
     }
 
     public int getId() {
@@ -40,11 +40,11 @@ public class AdEntity {
         this.ad = ad;
     }
 
-    public int getIdSearcher() {
-        return idSearcher;
+    public int getSearcherId() {
+        return searcherId;
     }
 
-    public void setIdSearcher(int idSearcher) {
-        this.idSearcher = idSearcher;
+    public void setSearcherId(int searcherId) {
+        this.searcherId = searcherId;
     }
 }

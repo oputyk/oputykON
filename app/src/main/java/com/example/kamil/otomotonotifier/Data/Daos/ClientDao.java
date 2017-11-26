@@ -30,6 +30,9 @@ public interface ClientDao {
     @Query("select * from client where phoneNumber= :phoneNumber")
     Client getClientByPhoneNumber(String phoneNumber);
 
+    @Query("select * from client inner join searcherEntity on searcherEntity.clientId = client.id inner join adEntity on adEntity.searcherId = searcherEntity.id where adEntity.id = adEntityId")
+    Client getClientByAdEntityId(int adEntityId);
+
     @Update(onConflict = 1)
     void update(Client client);
 }
