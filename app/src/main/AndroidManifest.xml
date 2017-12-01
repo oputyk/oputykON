@@ -62,7 +62,8 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".UI.Activities.ClientListActivity"></activity>
+        <activity android:name=".UI.Activities.ClientListActivity" />
+        <activity android:name=".UI.Activities.MainActivity"></activity>
     </application>
 
 </manifest>

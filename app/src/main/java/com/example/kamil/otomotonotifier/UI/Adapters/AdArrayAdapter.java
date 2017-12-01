@@ -14,7 +14,7 @@ import com.example.kamil.otomotonotifier.R;
 
 import java.util.List;
 
-public class SearchedAdArrayAdapter extends ArrayAdapter<Ad> {
+public class AdArrayAdapter extends ArrayAdapter<Ad> {
     private ViewGroup parent;
     private View view;
 
@@ -33,7 +33,7 @@ public class SearchedAdArrayAdapter extends ArrayAdapter<Ad> {
         }
     }
 
-    public SearchedAdArrayAdapter(Activity context, List<Ad> ads) {
+    public AdArrayAdapter(Activity context, List<Ad> ads) {
         super(context, R.layout.ad_basic_info, ads);
     }
 

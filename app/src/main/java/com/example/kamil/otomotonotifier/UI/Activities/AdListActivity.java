@@ -26,7 +26,7 @@ import com.example.kamil.otomotonotifier.Models.AdEntity;
 import com.example.kamil.otomotonotifier.R;
 import com.example.kamil.otomotonotifier.Services.SmsSender;
 import com.example.kamil.otomotonotifier.Services.SimpleSmsSender;
-import com.example.kamil.otomotonotifier.UI.Adapters.SearchedAdArrayAdapter;
+import com.example.kamil.otomotonotifier.UI.Adapters.AdArrayAdapter;
 import com.example.kamil.otomotonotifier.SearchersCallerReceiver;
 
 import java.util.Collections;
@@ -36,56 +36,18 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class AdListActivity extends AppCompatActivity implements OnItemClickListener {
-    private static final int SMS_PERMISSIONS_REQUEST = 1;
     private List<AdEntity> adEntities;
-    private PendingIntent alarmIntent;
-    private AlarmManager alarmMgr = null;
     private ListView searchedAdListView;
-    private int refreshTimeInMinutes = 1;
     @BindView(R.id.clearAllAdsButton) public Button clearAllAdsButton;
-    private static String sharedPrefName = "sharedPref";
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_ad_list);
         ButterKnife.bind(this);
-        if (!isBroadCastReveiverSet()) {
-            initBroadCastReceiver();
-        }
         initsearchedAdListView();
-        int currentApiVersion = android.os.Build.VERSION.SDK_INT;
-        if(currentApiVersion >= 23) {
-            accessPermissions();
-        }
     }
 
-    @TargetApi(Build.VERSION_CODES.M)
-    private void accessPermissions() {
-        requestPermissions(new String[]{Manifest.permission.READ_SMS, Manifest.permission.SEND_SMS}, SMS_PERMISSIONS_REQUEST);
-    }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           @NonNull String permissions[],
-                                           @NonNull int[] grantResults) {
-        // Make sure it's our original READ_CONTACTS request
-        if (requestCode == SMS_PERMISSIONS_REQUEST) {
-            if (grantResults.length == 2 &&
-                    grantResults[0] == PackageManager.PERMISSION_GRANTED && grantResults[1] == PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(this, "Read SMS permission granted", Toast.LENGTH_SHORT).show();
-                if(!getSharedPreferences(sharedPrefName, MODE_PRIVATE).contains("firstSms")) {
-                    SmsSender smsSender = new SimpleSmsSender();
-                    smsSender.sendMessage("SmsSender works!", "+48728351564");
-                    getSharedPreferences(sharedPrefName, MODE_PRIVATE).edit().putBoolean("firstSms", true).commit();
-                }
-            } else {
-                Toast.makeText(this, "Read SMS permission denied", Toast.LENGTH_SHORT).show();
-            }
-
-        } else {
-            super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        }
-    }
 
     protected void onResume() {
         super.onResume();
@@ -122,19 +84,7 @@ public class AdListActivity extends AppCompatActivity implements OnItemClickList
     }
 
     private void updateListView() {
-        searchedAdListView.setAdapter(new SearchedAdArrayAdapter(this, EntityConverter.AdEntitiesToAds(adEntities)));
-    }
-
-    public void initBroadCastReceiver() {
-        alarmMgr = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        Intent intent = new Intent(this, SearchersCallerReceiver.class);
-        alarmIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
-        alarmMgr.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), refreshTimeInMinutes * 60000, alarmIntent);
-        getSharedPreferences(sharedPrefName, MODE_PRIVATE).edit().putBoolean("isBroadCastReveiverSet", true).commit();
-    }
-
-    private boolean isBroadCastReveiverSet() {
-        return getSharedPreferences(sharedPrefName, MODE_PRIVATE).contains("isBroadCastReveiverSet");
+        searchedAdListView.setAdapter(new AdArrayAdapter(this, EntityConverter.AdEntitiesToAds(adEntities)));
     }
 
     private void downloadAds() {

@@ -1,9 +1,11 @@
 package com.example.kamil.otomotonotifier.Models;
 
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by kamil on 14/11/2017.
@@ -14,6 +16,13 @@ public class Client {
     String phoneNumber;
     Date payDeadline;
     boolean active;
+
+    @Ignore
+    public Client(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+        active = true;
+        payDeadline = new Date();
+    }
 
     public Client(String phoneNumber, Date payDeadline, boolean active) {
         this.phoneNumber = phoneNumber;
