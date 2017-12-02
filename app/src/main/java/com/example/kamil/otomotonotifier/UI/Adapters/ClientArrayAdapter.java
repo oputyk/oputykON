@@ -24,7 +24,7 @@ import butterknife.ButterKnife;
 
 public class ClientArrayAdapter extends ArrayAdapter<Client> {
 
-    private class ViewHolder {
+    public class ViewHolder {
         @BindView(R.id.clientPhoneNumber) TextView clientPhoneNumber;
 
         ViewHolder(View view) {

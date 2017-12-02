@@ -25,8 +25,8 @@ public class MainActivity extends AppCompatActivity {
     private static final int SMS_PERMISSIONS_REQUEST = 1;
     private PendingIntent alarmIntent;
     private AlarmManager alarmMgr = null;
-    private int refreshTimeInMinutes = 1;
-    private static String sharedPrefName = "sharedPref";
+    private static final int refreshTimeInMinutes = 1;
+    private static final String sharedPrefName = "sharedPref";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

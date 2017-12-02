@@ -30,13 +30,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".UI.Activities.AdListActivity"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:screenOrientation="portrait"></activity>
 
         <receiver
             android:name=".SearchersCallerReceiver"
@@ -62,8 +56,19 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".UI.Activities.ClientListActivity" />
-        <activity android:name=".UI.Activities.MainActivity"></activity>
+        <activity
+            android:name=".UI.Activities.ClientListActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".UI.Activities.MainActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".UI.Activities.ClientEditActivity"></activity>
     </application>
 
 </manifest>

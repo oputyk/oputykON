@@ -17,6 +17,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class ClientListActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
     @BindView(R.id.clientListView) ListView clientListView;
@@ -29,6 +30,11 @@ public class ClientListActivity extends AppCompatActivity implements AdapterView
         setContentView(R.layout.activity_client_list);
         ButterKnife.bind(this);
         initClientDao();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         update();
     }
 
@@ -47,6 +53,11 @@ public class ClientListActivity extends AppCompatActivity implements AdapterView
 
     private void initClientDao() {
         clientDao = AppDatabase.getDatabase(this).getClientDao();
+    }
+
+    @OnClick(R.id.addClientButton)
+    public void addNewClient() {
+
     }
 
     @Override

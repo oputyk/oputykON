@@ -10,8 +10,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
+import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.example.kamil.otomotonotifier.Converters.EntityConverter;
 import com.example.kamil.otomotonotifier.Data.Databases.AppDatabase;
@@ -25,24 +25,34 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class SearcherListActivity extends AppCompatActivity implements OnItemClickListener, OnItemLongClickListener {
-    @BindView(R.id.dataUsageTextView) public TextView dataUsageTextView;
     @BindView(R.id.searcherListView) public ListView searcherListView;
+    @BindView(R.id.addSearcher) public Button addSearcherButton;
     List<SearcherEntity> searcherEntities;
-    private int clientId;
+    private int phoneNumber;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_searcher_list);
         ButterKnife.bind(this);
         retrieveClientId();
+        if(phoneNumber != -1) {
+            enableSearcherButtonClicking();
+        } else {
+            disableSearcherButtonClicking();
+        }
         initSearcherListView();
     }
 
+    private void disableSearcherButtonClicking() {
+        addSearcherButton.setClickable(false);
+    }
+
+    private void enableSearcherButtonClicking() {
+        addSearcherButton.setClickable(true);
+    }
+
     private void retrieveClientId() {
-        clientId = getIntent().getIntExtra("clientId", -1);
-        if(clientId == -1) {
-            throw new RuntimeException("No clientId in SearcherListActivity.");
-        }
+        phoneNumber = getIntent().getIntExtra("phoneNumber", -1);
     }
 
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -99,6 +109,10 @@ public class SearcherListActivity extends AppCompatActivity implements OnItemCli
     }
 
     private void downloadSearchers() {
-        searcherEntities = AppDatabase.getDatabase(getApplicationContext()).getSearcherDao().getAllSearcherEntities();
+        if(phoneNumber == -1) {
+            searcherEntities = AppDatabase.getDatabase(getApplicationContext()).getSearcherDao().getAllSearcherEntities();
+        } else{
+            searcherEntities = AppDatabase.getDatabase(getApplicationContext()).getSearcherDao().getSearchersEntitiesByClientPhoneNumber(phoneNumber);
+        }
     }
 }
