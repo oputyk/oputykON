@@ -8,4 +8,5 @@
     <string name="category_prompt">Kategoria</string>
     <string name="make_prompt">Marka</string>
     <string name="add_new_client">Dodaj klienta</string>
+    <string name="phone_number">Numer telefonu</string>
 </resources>

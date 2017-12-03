@@ -57,7 +57,8 @@ public class ClientListActivity extends AppCompatActivity implements AdapterView
 
     @OnClick(R.id.addClientButton)
     public void addNewClient() {
-
+        Intent intent = new Intent(ClientListActivity.this, ClientEditActivity.class);
+        startActivity(intent);
     }
 
     @Override

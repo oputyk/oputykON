@@ -2,9 +2,6 @@ package com.example.kamil.otomotonotifier.Services;
 
 import android.telephony.SmsManager;
 
-import java.util.LinkedList;
-import java.util.List;
-
 /**
  * Created by kamil on 24/11/2017.
  */
@@ -18,6 +15,13 @@ public class SimpleSmsSender implements SmsSender {
 
     @Override
     public void sendMessage(String message, String phoneNumber) {
+        if(!isPhoneNumberCorrect(phoneNumber)) {
+            phoneNumber += "+48";
+        }
         smsManager.sendTextMessage(phoneNumber, null, message, null, null);
+    }
+
+    private boolean isPhoneNumberCorrect(String phoneNumber) {
+        return phoneNumber.startsWith("+");
     }
 }
