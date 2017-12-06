@@ -16,9 +16,9 @@ public class SimpleSmsSender implements SmsSender {
     @Override
     public void sendMessage(String message, String phoneNumber) {
         if(!isPhoneNumberCorrect(phoneNumber)) {
-            phoneNumber += "+48";
+            phoneNumber = "+48" + phoneNumber;
+            smsManager.sendTextMessage(phoneNumber, null, message, null, null);
         }
-        smsManager.sendTextMessage(phoneNumber, null, message, null, null);
     }
 
     private boolean isPhoneNumberCorrect(String phoneNumber) {

@@ -23,19 +23,20 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class SearcherListActivity extends AppCompatActivity implements OnItemClickListener, OnItemLongClickListener {
     @BindView(R.id.searcherListView) public ListView searcherListView;
     @BindView(R.id.addSearcher) public Button addSearcherButton;
     List<SearcherEntity> searcherEntities;
-    private int phoneNumber;
+    private String phoneNumber = null;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_searcher_list);
         ButterKnife.bind(this);
-        retrieveClientId();
-        if(phoneNumber != -1) {
+        retrievePhoneNumber();
+        if(phoneNumber != null) {
             enableSearcherButtonClicking();
         } else {
             disableSearcherButtonClicking();
@@ -51,16 +52,16 @@ public class SearcherListActivity extends AppCompatActivity implements OnItemCli
         addSearcherButton.setClickable(true);
     }
 
-    private void retrieveClientId() {
-        phoneNumber = getIntent().getIntExtra("phoneNumber", -1);
+    private void retrievePhoneNumber() {
+        phoneNumber = getIntent().getStringExtra("phoneNumber");
     }
 
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        goToSearcherEditActivity(((SearcherEntity) parent.getItemAtPosition(position)).getId());
+        goToSearcherEditActivityWithSearcherId(((SearcherEntity) parent.getItemAtPosition(position)).getId());
     }
 
     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-        final SearcherEntity searcherEntity = (SearcherEntity) parent.getItemAtPosition(position);
+                                                 final SearcherEntity searcherEntity = (SearcherEntity) parent.getItemAtPosition(position);
         Builder alertDialogBuilder = new Builder(this);
         alertDialogBuilder.setMessage("Czy chcesz usunąć tego obserwatora?");
         alertDialogBuilder.setPositiveButton("Tak", new OnClickListener() {
@@ -84,13 +85,21 @@ public class SearcherListActivity extends AppCompatActivity implements OnItemCli
         update();
     }
 
-    private void goToSearcherEditActivity(int searcherId) {
+    @OnClick(R.id.addSearcher)
+    public void goToSearcherEditActivity() {
         Intent intent = new Intent(this, SearcherEditActivity.class);
-        intent.putExtra("searcherId", searcherId);
+        intent.putExtra("phoneNumber", phoneNumber);
         startActivity(intent);
     }
 
-    public void goToSearcherEditActivity(View view) {
+    private void goToSearcherEditActivityWithSearcherId(int searcherId) {
+        Intent intent = new Intent(this, SearcherEditActivity.class);
+        intent.putExtra("searcherId", searcherId);
+        intent.putExtra("phoneNumber", phoneNumber);
+        startActivity(intent);
+    }
+
+    public void goToSearcherEditActivityWithSearcherId(View view) {
         startActivity(new Intent(this, SearcherEditActivity.class));
     }
 
@@ -105,11 +114,11 @@ public class SearcherListActivity extends AppCompatActivity implements OnItemCli
     }
 
     private void updateListView() {
-        searcherListView.setAdapter(new SearcherArrayAdapter(this, EntityConverter.SearcherEntitiesToSearchers(searcherEntities)));
+        searcherListView.setAdapter(new SearcherArrayAdapter(this, searcherEntities));
     }
 
     private void downloadSearchers() {
-        if(phoneNumber == -1) {
+        if(phoneNumber == null) {
             searcherEntities = AppDatabase.getDatabase(getApplicationContext()).getSearcherDao().getAllSearcherEntities();
         } else{
             searcherEntities = AppDatabase.getDatabase(getApplicationContext()).getSearcherDao().getSearchersEntitiesByClientPhoneNumber(phoneNumber);

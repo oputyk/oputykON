@@ -14,7 +14,5 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="10.0"
-        android:clickable="false"
-        android:onClick="goToSearcherEditActivity"
         android:text="@string/add_searcher" />
 </LinearLayout>

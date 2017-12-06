@@ -27,11 +27,11 @@ public class ClientArrayAdapter extends ArrayAdapter<Client> {
     public class ViewHolder {
         @BindView(R.id.clientPhoneNumber) TextView clientPhoneNumber;
 
-        ViewHolder(View view) {
-            ButterKnife.bind(view);
+        public ViewHolder(View view) {
+            ButterKnife.bind(this, view);
         }
 
-        void updateByClient(Client client) {
+        public void updateByClient(Client client) {
             clientPhoneNumber.setText(client.getPhoneNumber());
         }
     }

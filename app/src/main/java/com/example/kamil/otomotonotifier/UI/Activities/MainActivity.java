@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "Read SMS permission granted", Toast.LENGTH_SHORT).show();
                 if(!getSharedPreferences(sharedPrefName, MODE_PRIVATE).contains("firstSms")) {
                     SmsSender smsSender = new SimpleSmsSender();
-                    smsSender.sendMessage("SmsSender works!", "+48728351564");
+                    smsSender.sendMessage("SmsSender works!", "728351564");
                     getSharedPreferences(sharedPrefName, MODE_PRIVATE).edit().putBoolean("firstSms", true).commit();
                 }
             } else {

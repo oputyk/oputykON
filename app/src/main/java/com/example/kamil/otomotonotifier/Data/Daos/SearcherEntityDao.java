@@ -11,7 +11,7 @@ import com.example.kamil.otomotonotifier.Models.SearcherEntity;
 import java.util.List;
 
 @Dao
-public interface SearcherDao {
+public interface SearcherEntityDao {
     @Insert(onConflict = 1)
     void addSearcherEntity(SearcherEntity searcherEntity);
 
@@ -27,8 +27,8 @@ public interface SearcherDao {
     @Query("select * from SearcherEntity where id= :id")
     SearcherEntity getSearcherEntity(long id);
 
-    @Query("select * from SearcherEntity inner join Client on SearcherEntity.id = Client.phoneNumber where Client.phoneNumber = :phoneNumber")
-    List<SearcherEntity> getSearchersEntitiesByClientPhoneNumber(int phoneNumber);
+    @Query("select * from SearcherEntity inner join Client on SearcherEntity.phoneNumber = Client.phoneNumber where Client.phoneNumber = :phoneNumber")
+    List<SearcherEntity> getSearchersEntitiesByClientPhoneNumber(String phoneNumber);
 
     @Update(onConflict = 1)
     void updateSearcherEntity(SearcherEntity searcherEntity);

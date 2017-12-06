@@ -14,13 +14,13 @@ import com.example.kamil.otomotonotifier.AdEngine.Models.Searcher;
 public class SearcherEntity {
     @PrimaryKey(autoGenerate = true)
     int id;
-    int clientId;
+    String phoneNumber;
     @Embedded
     Searcher searcher;
 
-    public SearcherEntity(int id, int clientId, Searcher searcher) {
+    public SearcherEntity(int id, String phoneNumber, Searcher searcher) {
         this.id = id;
-        this.clientId = clientId;
+        this.phoneNumber = phoneNumber;
         this.searcher = searcher;
     }
 
@@ -32,12 +32,12 @@ public class SearcherEntity {
         this.id = id;
     }
 
-    public int getClientId() {
-        return clientId;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setClientId(int clientId) {
-        this.clientId = clientId;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public Searcher getSearcher() {

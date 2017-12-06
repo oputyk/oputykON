@@ -7,9 +7,9 @@ import android.arch.persistence.room.TypeConverters;
 import android.content.Context;
 
 import com.example.kamil.otomotonotifier.Converters.DatabaseConverters;
-import com.example.kamil.otomotonotifier.Data.Daos.AdDao;
+import com.example.kamil.otomotonotifier.Data.Daos.AdEntityDao;
 import com.example.kamil.otomotonotifier.Data.Daos.ClientDao;
-import com.example.kamil.otomotonotifier.Data.Daos.SearcherDao;
+import com.example.kamil.otomotonotifier.Data.Daos.SearcherEntityDao;
 import com.example.kamil.otomotonotifier.Models.AdEntity;
 import com.example.kamil.otomotonotifier.Models.Client;
 import com.example.kamil.otomotonotifier.Models.SearcherEntity;
@@ -19,9 +19,9 @@ import com.example.kamil.otomotonotifier.Models.SearcherEntity;
 public abstract class AppDatabase extends RoomDatabase {
     private static AppDatabase instance = null;
 
-    public abstract AdDao getAdDao();
+    public abstract AdEntityDao getAdDao();
     public abstract ClientDao getClientDao();
-    public abstract SearcherDao getSearcherDao();
+    public abstract SearcherEntityDao getSearcherDao();
 
     public static AppDatabase getDatabase(Context context) {
         if (instance == null) {

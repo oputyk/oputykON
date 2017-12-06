@@ -45,6 +45,7 @@ public class ClientListActivity extends AppCompatActivity implements AdapterView
 
     private void updateClientListView() {
         clientListView.setAdapter(new ClientArrayAdapter(this, clientList));
+        clientListView.setOnItemClickListener(this);
     }
 
     private void downloadClientList() {
@@ -65,7 +66,7 @@ public class ClientListActivity extends AppCompatActivity implements AdapterView
     public void onItemClick(AdapterView<?> parent, View view, int position, long l) {
         Client client = (Client) parent.getItemAtPosition(position);
         Intent intent = new Intent(ClientListActivity.this, SearcherListActivity.class);
-        intent.putExtra("clientId", client.getPhoneNumber());
+        intent.putExtra("phoneNumber", client.getPhoneNumber());
         startActivity(intent);
     }
 }

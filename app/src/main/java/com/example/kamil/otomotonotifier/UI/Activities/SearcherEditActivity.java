@@ -38,7 +38,7 @@ public class SearcherEditActivity extends AppCompatActivity {
     @BindView(R.id.fuelTypeEdit) public EditText fuelTypeEdit;
 
     Searcher searcher = new Searcher();
-    int clientId;
+    private String phoneNumber = null;
     static List<Category> categoryList = new ArrayList<>();
     List<Category> subcategoryList = new ArrayList<>();
 
@@ -46,9 +46,9 @@ public class SearcherEditActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_searcher_edit);
         ButterKnife.bind(this);
-        clientId = getIntent().getIntExtra("clientId", -1);
-        if(clientId == -1) {
-            throw new RuntimeException("No clientId in SearcherEditActivity!!");
+        retrievePhoneNumber();
+        if(phoneNumber == null) {
+            throw new RuntimeException("No phoneNumber in SearcherEditActivity!!");
         }
         initComponents();
         downloadCategoryList();
@@ -59,11 +59,15 @@ public class SearcherEditActivity extends AppCompatActivity {
         }
     }
 
+    private void retrievePhoneNumber() {
+        phoneNumber = getIntent().getStringExtra("phoneNumber");
+    }
+
     public void confirmChanges(View view) {
         updateSearcherByUI();
         if (!searcher.getCategory().equalsIgnoreCase("osobowe") || searcher.getMake() != null) {
             if (isOsoboweOk()) {
-                AppDatabase.getDatabase(getApplicationContext()).getSearcherDao().addSearcherEntity(new SearcherEntity(0, clientId, searcher));
+                AppDatabase.getDatabase(getApplicationContext()).getSearcherDao().addSearcherEntity(new SearcherEntity(0, phoneNumber, searcher));
                 finish();
             } else {
                 Toast.makeText(this, "Nie ma takiej marki samochodu osobowego!", Toast.LENGTH_LONG).show();

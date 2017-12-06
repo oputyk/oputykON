@@ -10,11 +10,12 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.example.kamil.otomotonotifier.AdEngine.Models.Searcher;
+import com.example.kamil.otomotonotifier.Models.SearcherEntity;
 import com.example.kamil.otomotonotifier.R;
 
 import java.util.List;
 
-public class SearcherArrayAdapter extends ArrayAdapter<Searcher> {
+public class SearcherArrayAdapter extends ArrayAdapter<SearcherEntity> {
     private ViewGroup parent;
     private View view;
 
@@ -26,10 +27,10 @@ public class SearcherArrayAdapter extends ArrayAdapter<Searcher> {
         private ViewHolder() {
         }
 
-        public void updateBySearcher(Searcher searcher) {
-            this.price.setText(makeAndReturnSearcherPricesString(searcher));
-            this.category.setText(searcher.getCategory());
-            this.adInfo.setText(searcher.toString());
+        public void updateBySearcher(SearcherEntity searcherEntity) {
+            this.price.setText(makeAndReturnSearcherPricesString(searcherEntity.getSearcher()));
+            this.category.setText(searcherEntity.getSearcher().getCategory());
+            this.adInfo.setText(searcherEntity.getSearcher().toString());
         }
 
         private String makeAndReturnSearcherPricesString(Searcher searcher) {
@@ -45,7 +46,7 @@ public class SearcherArrayAdapter extends ArrayAdapter<Searcher> {
         }
     }
 
-    public SearcherArrayAdapter(Activity context, List<Searcher> searchers) {
+    public SearcherArrayAdapter(Activity context, List<SearcherEntity> searchers) {
         super(context, R.layout.ad_basic_info, searchers);
     }
 

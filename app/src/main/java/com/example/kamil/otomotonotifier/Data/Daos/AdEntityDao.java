@@ -11,7 +11,7 @@ import com.example.kamil.otomotonotifier.Models.AdEntity;
 import java.util.List;
 
 @Dao
-public interface AdDao {
+public interface AdEntityDao {
     @Insert(onConflict = 1)
     void addAdEntity(AdEntity ad);
 
